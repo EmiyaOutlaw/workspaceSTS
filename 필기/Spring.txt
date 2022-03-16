@@ -1,0 +1,39 @@
+Spring(framework) -A
+
+좋은 프로그래밍이란 
+(클래스간) 결합도 (낮고) 응집도(높아야한다).
+
+결합도: 클래스간의 관계 / 복잡도 / 의존성 
+->DI(dependency Injection) 의존성 주입 
+*객체를 스프링 컨테이너가 자동으로 생성해 주기 위해서는
+우선적으로 필요한 객체는 미리 생성 해 두어야 한다.
+->IOC(inversion of Control) 제어 반전(역전)(control에 대한 주체가 바뀐다)
+
+
+응집도: 해당 클래스의 필요한 기능 밑 변수가 최적으로 구성되어 있다. 
+->AOP(aspect oriented Programming) 관점 지향 프로그래밍 
+
+@스프링을 설정을 할 때, 자바코드, xml, annotation으로 설정 가능 
+
+스프링 웹 프로젝트 실행 순서
+*설정파일: web.xml, root-context.xml, servlet-context.xml
+
+1.web.xml 
+-root-context.xml 실행
+-appServlet Controller 생성 + servlet-context.xml
+-appServlet Controller url mapping 지정 "/"
+
+
+2.root-context.xml
+
+3.servlet-context.xml
+
+maven 프로젝트
+pom.xml은 필요한 jar 파일을 자동으로 다운로드 함.
+
+
+@controller
+https servlet 상복 받게 해주는 좋은 녀석.
+
+
+
