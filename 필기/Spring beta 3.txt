@@ -1,0 +1,90 @@
+1. web.xml 
+-index.jsp를 시작 페이지로 설정
+
+	<welcome-file-list>
+       		<welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+  	</welcome-file-list>
+
+-프로젝트 전체 경로의 인코딩을 UTF-8로 설정 
+   <filter>
+      <filter-name>characterEncoding</filter-name>
+      <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+      <init-param>
+         <param-name>encoding</param-name>
+         <param-value>UTF-8</param-value>
+      </init-param>
+   </filter>
+
+-root-context.xml 로드
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+
+
+
+- appServlet명으로 컨트롤러 생성 
+
+<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+-servlet-context.xml 로드 
+
+
+
+-appServlet url 패턴 지정 밑. 호출 방법 설정
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+
+2.root-context.xml (필요한 객체를 생성하는 코드)
+
+-전체적으로 필요한 객체를 생성 
+- BasicDataSource dataSourceSpied = new BasicDataSource();
+ 
+ - Log4jdbcProxyDataSource dataSource = new Log4jdbcProxyDataSource();
+
+  - SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+
+  - SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate();
+
+-com.kh.board.service.패키지 안의 파일을 로드
+
+<context:component-scan base-package="com.kh.board.service"/>
+
+->BoardService, BoardServiceImpl
+->BoardServiceImpl 객체 생성 
+   BoardServiceImpl  boardService = new BoardServiceImpl 
+객체 명이 boardService인 이유는 @Service("boardService") 땜에
+
+
+3.servlet-context.xml(필요한 객체를 생성하는 코드 + 페이지 요청 응답 처리 설정)
+
+- annotation 사용으로 객체를 생성 할 수 있게 해 주는 설정  
+- resource의 경로 지정
+-페이지 이동 경로 설정 
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+-com.kh.board.controller  패키지 안의 파일을 로드 
+<context:component-scan base-package="com.kh.board.controller" />
+
+-> BoardController  boardController = new BoardController
+
+
+//컨트롤러에서 컨트롤러로 이동 시 
+		return "redirect:/board/boardList";
+
+   

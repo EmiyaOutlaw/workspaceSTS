@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head> 
 <body>
 게시글 목록 페이지 입니다<br>
 <c:forEach items="${boardList }" var="board">
-${board.boardNum } / ${board.title } / ${board.writer }<br>
+${board.boardNum } / <a href="/board/boardDetail?boardNum=${board.boardNum }">${board.title }</a> / ${board.writer }<br>
 </c:forEach>
-
+<br>
+<!-- 제목, 내용 작성자만 입력  -->
+<input type="button" value="글등록" onclick="location.href='/board/boardWrite';">
 </body>
 </html>

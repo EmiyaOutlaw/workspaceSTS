@@ -7,7 +7,7 @@
 	
 	<!-- 해당 페이지 내에 있는 클래스들을 프로젝트 실행 시 로드하여  -->
 	<!-- 미리 객체를 만들 준비를 함  -->
-<context:component-scan base-package="com.kh.board.service"/>
+<context:component-scan base-package="com.kh.shop.service"/>
    
    <!-- 어노테이션으로 트렌잭션 처리를 하기 위한 설정 -->
   <!--  <tx:annotation-driven/> -->

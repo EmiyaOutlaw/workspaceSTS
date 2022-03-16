@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.board.service.BoardService;
@@ -23,8 +24,9 @@ import com.kh.board.vo.BoardVO;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
+	//boardServivce라는 이름으로 만들어진 객체를 가져오겠다.
 	@Resource(name = "boardService")
-	private BoardService boardService = new BoardServiceImpl();
+	private BoardService boardService;
 	
 	
 	//게시글 목록 페이지로 이동 
@@ -34,8 +36,30 @@ public class BoardController {
 		model.addAttribute("boardList", list);
 		
 		return "board_list"; // /WEB-INF/views/ board_list.jsp
-							 
 		
+	//컨트롤러에서 컨트롤러로 이동 시 
+		//return "redirect:/board/boardList";
+		
+	}
+	@GetMapping("/boardWrite")
+	public String goBoardWrite() {
+		
+		
+		return "board_write";
+	}
+	@PostMapping("/boardWrite")
+	//command 객체를 사용하면 쉽게 데이터를 받아 올 수 있다. setter가 있으면 자동으로 넘어온다.  
+	public String boardWrite(BoardVO boardVO) {
+		
+		boardService.insertBoard(boardVO);
+		
+		return "redirect:/board/boardList";
+	}
+	
+	@GetMapping("/boardDetail")
+	public String boardDetail(int boardNum, Model model) {
+		model.addAttribute("board", boardService.selectDetailBoardList(boardNum));
+		return "board_detail";
 	}
 	
 }
