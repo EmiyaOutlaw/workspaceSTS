@@ -5,14 +5,41 @@
 -pom.xml 파일 수정: 12번 째 줄 5.0.7release로 수정
 <org.springframework-version>5.0.7.RELEASE</org.springframework-version>
 
-/ 141~ 142번째 줄 자바 버전1.8로 변경
+/ groupID가 org.apache.maven.plugins 줄 자바 버전1.8로 변경
                 <source>1.8</source>
                     <target>1.8</target>
 
 -프로젝트 설정(properties)에서 projfect factes -> java1.8 and web module 3.1로 변경
 
-3.web.xml에 시작 페이지 설정 및 인코딩(utf-8)/ java.sun.com 대문자로 변경 
+3.web.xml에 시작 페이지 설정 및 인코딩(utf-8)
+	
+-아래 소스 붙여넣기-	
+
+   <welcome-file-list>
+       <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+   </welcome-file-list>
+   
+   <!-- 프로젝트의 인코딩을 utf-8로 설정 -->
+   <filter>
+      <filter-name>characterEncoding</filter-name>
+      <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+      <init-param>
+         <param-name>encoding</param-name>
+         <param-value>UTF-8</param-value>
+      </init-param>
+   </filter>
+   
+   <filter-mapping>
+      <filter-name>characterEncoding</filter-name>
+       <url-pattern>/*</url-pattern>
+   </filter-mapping>
+
+
+그리고 web-app쪽에 있는 java.sun.com 대문자로 변경 
 ctrl + shift+ x -> 대문자 전환 단축키
+
+xsi:schemaLocation="http://JAVA.SUN.COM/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
 
 
 *스프링 프로젝트는 최초 한 번 실행 후 반드시 tomcat의 경로를 '/'로 설정해준다.
