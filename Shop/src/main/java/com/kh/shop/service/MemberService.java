@@ -6,4 +6,8 @@ public interface MemberService {
 	
 	//회원가입
 	void join(MemberVO memberVo);
+	
+	//로그인
+	
+	MemberVO login(MemberVO memberVo);
 }

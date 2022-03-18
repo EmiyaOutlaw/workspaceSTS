@@ -1,8 +1,10 @@
 package com.kh.shop.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,5 +31,22 @@ public class MemberController {
 		return "redirect:/item/itemList";
 	}
 	
+	@PostMapping("/login")
+	public String login(MemberVO membeVo, HttpSession session) {
+		MemberVO result = memberService.login(membeVo);
+		
+		if(result != null) {
+			session.setAttribute("loginInfo", result);	
+		}
+		return "redirect:/item/itemList";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.removeAttribute("loginInfo");
+		return "redirect:/item/itemList";
+		
+	}
 	
 }

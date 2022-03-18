@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,17 @@
 <body>
 <div class="row">
 	<div class="col text-end">
-		<span class="loginSpan" data-bs-toggle="modal" data-bs-target="#loginModal">Login</span>
-		<span class="joinSpan" data-bs-toggle="modal" data-bs-target="#joinModal">Join</span>
+		<c:choose>
+			<c:when test="${not empty sessionScope.loginInfo }">
+				${sessionScope.loginInfo.memName }님 반갑습니다.
+				내 정보 보기
+				<a href="/member/logout">Logout</a>
+			</c:when>
+			<c:otherwise>
+				<span class="loginSpan" data-bs-toggle="modal" data-bs-target="#loginModal">Login</span>
+				<span class="joinSpan" data-bs-toggle="modal" data-bs-target="#joinModal">Join</span>			
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 <div class="row">
@@ -28,60 +38,66 @@
 </div>
 <div class="row">
 	<div class="col">
-			메뉴 들어옴
-			<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#">Navbar</a>
-					<button class="navbar-toggler" type="button"
-						data-bs-toggle="collapse" data-bs-target="#navbarNav"
-						aria-controls="navbarNav" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link active"
-								aria-current="page" href="#">Home</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#">IT/인터넷</a>
-							</li>
-							<li class="nav-item"><a class="nav-link" href="#">사회과학</a>
-							</li>
-							<li class="nav-item"><a class="nav-link">경제/경영</a>
-							</li>
-						</ul>
-					</div>
+		메뉴 들어옴
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="container-fluid">
+				<!-- <a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button> -->
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">전체 상품</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">IT/인터넷</a>
+						</li>
+						<li class="nav-item"><a class="nav-link" href="#">사회과학</a>
+						</li>
+						<li class="nav-item"><a class="nav-link">경제/경영</a>
+						</li>
+						<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
+						<li class="nav-item">
+							<a class="nav-link" href="/admin/regItem">관리자 메뉴</a>
+						</li>
+						</c:if>
+					</ul>
 				</div>
-			</nav>
-		</div>
+			</div>
+		</nav>
+	</div>
 </div>
-
-
-
 <!-- login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
- 		<div class="row">
- 			<div class="mb-3">
-  				<input class="form-control" type="text" placeholder="Input ID here">	
- 			</div>
- 		</div>
- 		<div class="row">
- 			<div class="mb-3">
-  				<input class="form-control" type="text" placeholder="Input Password here">				
- 			</div>		
- 		</div>
-	 		<div class="row">
-	 			<div class="col d-grid gap-2 ">
-					<button type="button" class="btn btn-secondary">Login</button>
-				</div>		
-	 		</div>   
-      </div>
-    </div>
-  </div>
-</div>
+	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+		     	 <form action="/member/login" method="post">
+		      
+		 		<div class="row">
+		 			<div class="mb-3">
+		  				<input class="form-control" type="text" placeholder="Input ID here" name="memId" required>	
+		 			</div>
+		 		</div>
+		 		<div class="row">
+		 			<div class="mb-3">
+		  				<input class="form-control" type="password" placeholder="Input Password here" name="memPw" required>				
+		 			</div>		
+		 		</div>
+			 		<div class="row">
+			 			<div class="col d-grid gap-2 ">
+							<button type="submit" class="btn btn-secondary">Login</button>
+						</div>		
+			 		</div>
+		 		</form>   
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 
 <!--join Modal  -->
 <div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -140,54 +156,6 @@
   </div>
 </div>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript">
-//joinModal 선택 
-var joinModal = document.getElementById('joinModal');
-var loginModal = document.getElementById('loginModal');
-
-//joinModal이 닫힐 때 자동 시작하는 이벤트 
-joinModal.addEventListener('hidden.bs.modal', function (event) {
-	//joinModal 안에 있는 모든 input tag 선택 
-	var tags = document.querySelectorAll('#joinModal input');
-	
-	
-	//선택된 태그들의 value값을 빈값으로 세팅 
-	for(var i = 0; i < tags.length; i++){
-		tags[i].value = '';
-		
-	}
-//loginModal이 닫힐 때 자동으로 시작하는 입	
-	
-	
-});	
-
-//loginModal이 닫힐 때 자동 시작하는 이벤트 
-loginModal.addEventListener('hidden.bs.modal', function (event) {
-	//joinModal 안에 있는 모든 input tag 선택 
-	var tags = document.querySelectorAll('#loginModal input');
-	
-	
-	//선택된 태그들의 value값을 빈값으로 세팅 
-	for(var i = 0; i < tags.length; i++){
-		tags[i].value = '';
-		
-	}
-//loginModal이 닫힐 때 자동으로 시작하는 입	
-	
-	
-});
-
-//우편번호 검색 api
-function sample4_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-  
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                               document.getElementById("addr").value = roadAddr;
-            
-            }
-        }).open();
-    }
-</script>
+<script src="/resources/js/common/menu.js"type="text/javascript"></script>
 </body>
 </html>
