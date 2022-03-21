@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.shop.service.itemService;
+import com.kh.shop.vo.ItemVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,9 +30,10 @@ public class AdminController {
 	
 	@PostMapping("/regItem")
 	// 책 등록 하기
-	public String regSeeItem() {
+	public String regItem(ItemVO itemVO) {
+		itemService.insertItem(itemVO);
 		
-		return "";
+		return "redirect:/admin/regItem";
 	}
 	
 	

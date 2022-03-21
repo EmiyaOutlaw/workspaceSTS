@@ -21,5 +21,5 @@ function regBook(){
 	//submit
 	
 	var formTag = document.getElementById('regItemForm');
-	formTag.submt();
+	formTag.submit();
 }
