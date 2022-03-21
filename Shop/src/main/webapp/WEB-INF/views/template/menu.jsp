@@ -66,7 +66,7 @@
 						</li> -->
 						<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y' }">
 						<li class="nav-item">
-							<a class="nav-link" href="/admin/regItem">관리자 메뉴</a>
+							<a class="nav-link" href="/admin/categoryManage">관리자 메뉴</a>
 						</li>
 						</c:if>
 					</ul>

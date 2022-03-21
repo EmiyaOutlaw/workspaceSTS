@@ -22,22 +22,7 @@
 		FROM ITEM_CATEGORY
 	</select>
 
-	<insert id="insertItem">
-		INSERT INTO SHOP_ITEM(
-			ITEM_CODE
-			, ITEM_NAME
-			, ITEM_PRICE
-			, ITEM_DETAIL
-			, CATE_CODE
-		) VALUES(
-			(SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6))), 0) + 1, 3, '0') 
-			FROM SHOP_ITEM)
-			, #{itemName}
-			, #{itemPrice}
-			, #{itemDetail}
-			, #{cateCode}
-		)
-	</insert>
+
 
 </mapper>
 

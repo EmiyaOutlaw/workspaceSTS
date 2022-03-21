@@ -10,6 +10,5 @@ public interface itemService {
 	
 	List<CategoryVO> selectCategoryList();
 
-	//상품 등록
-	void insertItem(ItemVO itemVO);
+
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="adminMapper">
+	<resultMap type="com.kh.shop.vo.MenuVO" id="menu">
+		<id column="MENU_CODE" property="menuCode"/>
+		<result column="MENU_NAME" property="menuName"/>
+	</resultMap>
+	
+	
+	<resultMap type="com.kh.shop.vo.SubMenuVO" id="subMenu">
+		<id column="SUB_MENU_CODE" property="subMenuCode"/>
+		<result column="SUB_MENU_NAME" property="subMenuName"/>
+		<result column="MENU_CODE" property="menuCode"/>
+		<result column="MENU_URI" property="menuUri"/>
+	</resultMap>
+
+
+
+	<select id="selectMenuList" resultMap="menu">
+		SELECT MENU_CODE
+			, MENU_NAME
+		FROM ADMIN_MENU
+	</select>
+
+
+		<insert id="insertItem">
+		INSERT INTO SHOP_ITEM(
+			ITEM_CODE
+			, ITEM_NAME
+			, ITEM_PRICE
+			, ITEM_DETAIL
+			, CATE_CODE
+		) VALUES(
+			(SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6))), 0) + 1, 3, '0') 
+			FROM SHOP_ITEM)
+			, #{itemName}
+			, #{itemPrice}
+			, #{itemDetail}
+			, #{cateCode}
+		)
+	</insert>
+	
+	<select id="selectSubMenuList" resultMap="subMenu">
+		SELECT SUB_MENU_CODE
+			, SUB_MENU_NAME
+			, MENU_URI
+		FROM SUB_MENU
+		WHERE MENU_CODE = 'MENU_001'
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
