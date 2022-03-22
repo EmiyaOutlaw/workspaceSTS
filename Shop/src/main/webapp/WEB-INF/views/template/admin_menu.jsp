@@ -54,7 +54,10 @@
 							<li class="nav-item">
 								<a class="nav-link <c:if test="${menu.menuCode eq selectedMenu }">active</c:if>" href="/admin/${menu.menuUri }?menuCode=${menu.menuCode}"> ${menu.menuName }</a>
 							</li>
-						</c:forEach>			
+						</c:forEach>	
+						<li class="nav-item">
+							<a class="nav-link" href="/item/itemList">돈줄 메뉴</a>
+						</li>		
 					</ul>
 				</div>
 			</div>

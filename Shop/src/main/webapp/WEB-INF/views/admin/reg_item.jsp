@@ -16,7 +16,7 @@
 <div class="row">
 	<div class="col-6">
 		<div style="background-color: #eeeeee; padding:16px; border-radius: 12px;">
-			<form class="row g-3"action="/admin/regItem" method="post" id="regItemForm">
+			<form class="row g-3"action="/admin/regItem" method="post" id="regItemForm" enctype="multipart/form-data">
 			<div class="col-12">
 				<label for="categorySelector" class="form-label">카테고리</label>
 				<select class="form-select" id="categorySelector" name="cateCode">
@@ -37,6 +37,14 @@
 			<div class="col-12">
 				<label for="bookIntro" class="form-label">도서 소개</label>
 				<textarea class="form-control" rows="3" id="bookIntro" name="itemDetail"></textarea>	
+			</div>
+			<div class="col-12">
+				<label for="img" class="form-label">대표 이미지</label>
+				<input type="file" class="form-control" id="img" name="mainImg">				
+			</div>
+			<div class="col-12">
+				<label for="subImg" class="form-label">추가 이미지</label>
+				<input type="file" class="form-control" id="subImg" multiple name="subImg">				
 			</div>
 			<div class="col-12 d-grid gap-2">
                   <button type="button" class="btn btn-primary" onclick="regBook();">도서 등록</button>
