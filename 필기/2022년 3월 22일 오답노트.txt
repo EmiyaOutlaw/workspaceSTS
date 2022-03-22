@@ -5,3 +5,13 @@
 
  <a href="/admin/${subMenu.menuUri }?menuCode=${subMenu.menuCode}" class="list-group-item list-group-item-action active" aria-current="true">
 a href=""
+
+
+첨부파일을 할 때
+
+tupe="file"로 한다.
+첨부파일 앞에 enctype을 넣는다. 왜냐하면 숫자나 글자가 아닌 데이터이기 때문에 첨부파일 데이터도 따로 해석이 필요하기 때문이다.
+enctype="multiparty/form-data"
+
+첨부파일 객체 
+MultipartHttpServletRequest
