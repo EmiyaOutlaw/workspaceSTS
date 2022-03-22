@@ -5,6 +5,7 @@
 	<resultMap type="com.kh.shop.vo.MenuVO" id="menu">
 		<id column="MENU_CODE" property="menuCode"/>
 		<result column="MENU_NAME" property="menuName"/>
+		<result column="MENU_URI" property="menuUri"/>
 	</resultMap>
 	
 	
@@ -20,6 +21,7 @@
 	<select id="selectMenuList" resultMap="menu">
 		SELECT MENU_CODE
 			, MENU_NAME
+			, MENU_URI
 		FROM ADMIN_MENU
 	</select>
 
@@ -45,8 +47,9 @@
 		SELECT SUB_MENU_CODE
 			, SUB_MENU_NAME
 			, MENU_URI
+			, MENU_CODE
 		FROM SUB_MENU
-		WHERE MENU_CODE = 'MENU_001'
+		WHERE MENU_CODE = #{menuCode}
 	</select>
 </mapper>
 

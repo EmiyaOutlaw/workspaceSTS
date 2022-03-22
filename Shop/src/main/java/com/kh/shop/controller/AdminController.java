@@ -12,6 +12,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import com.kh.shop.service.adminService;
 import com.kh.shop.service.itemService;
 import com.kh.shop.vo.ItemVO;
+import com.kh.shop.vo.MenuVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -25,21 +26,37 @@ public class AdminController {
 
 	//카테고리 관리 페이지로 이동 (상단에 관리자 메뉴 클릭 시 실행)
 	@GetMapping("/categoryManage")
-	public String categoryManage(Model model) {
+	public String categoryManage(Model model, String menuCode, String subMenuCode) {
 		
 		
 		//관리자 메뉴 목록 조회 
 		model.addAttribute("menuList", adminService.selectMenuLIst());
-				
-		//상품 관리 메뉴의 하위 메뉴 목록 조회
-		model.addAttribute("subMenuList", adminService.selectSubMenuList());
+
+		model.addAttribute("selectedMenu", menuCode); //Menu_001 or Menu_002
+		model.addAttribute("selectedSubMenu", subMenuCode); //SUB_MENU_001 OR SUB_MENU_002
+
+		
+		if(menuCode == null) {
+			menuCode = "MENU_001";
+			
+		}
+		
+		if(subMenuCode == null) {
+			subMenuCode = "SUB_MENU_001";
+			
+		}
+
+		//하위 메뉴 목록 조회
+		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
+		
+
 		
 		return "admin/category_manage";
 	}
 	
 		//상품 등록 페이지로 이동 
 		@GetMapping("/regItem")
-		public String regItem(Model model) {
+		public String regItem(Model model, String menuCode, String subMenuCode) {
 	
 		//카테고리 목록 조회
 		model.addAttribute("categoryList", itemService.selectCategoryList());
@@ -48,16 +65,21 @@ public class AdminController {
 		model.addAttribute("menuList", adminService.selectMenuLIst());
 				
 		//상품 관리 메뉴의 하위 메뉴 목록 조회
-		model.addAttribute("subMenuList", adminService.selectSubMenuList());
+		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
+	
+		model.addAttribute("selectedMenu", menuCode);
+		model.addAttribute("selectedSubMenu", subMenuCode);
+		
 		
 		return "admin/reg_item";
 	
+		
 
 	}
 		
 		//상품 관리 페이지로 이동(side)
 		@GetMapping("/itemManage")
-		public String itemManage(Model model) {
+		public String itemManage(Model model, String menuCode, String subMenuCode) {
 			
 			
 			
@@ -65,8 +87,10 @@ public class AdminController {
 			model.addAttribute("menuList", adminService.selectMenuLIst());
 					
 			//상품 관리 메뉴의 하위 메뉴 목록 조회
-			model.addAttribute("subMenuList", adminService.selectSubMenuList());
+			model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
 			
+			model.addAttribute("selectedMenu", menuCode);
+			model.addAttribute("selectedSubMenu", subMenuCode);
 			
 			return "admin/item_manage";
 		}
@@ -82,4 +106,27 @@ public class AdminController {
 	}
 	
 	
+	//회원 목록 페이지로 이동 
+	@GetMapping("/memberList")
+	public String memberList(Model model, String menuCode, String subMenuCode) {
+		
+		
+		//관리자 메뉴 목록 조회 
+		model.addAttribute("menuList", adminService.selectMenuLIst());
+				
+		//상품 관리 메뉴의 하위 메뉴 목록 조회
+		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
+		
+		if(subMenuCode == null) {
+			subMenuCode = "SUB_MENU_004";
+			
+		}
+		
+		
+		model.addAttribute("selectedMenu", menuCode);
+		model.addAttribute("selectedSubMenu", subMenuCode);		
+		
+		
+		return "admin/member_list";
+	}
 }

@@ -28,8 +28,8 @@ public class adminServiceImpl implements adminService {
 	}
 
 	@Override
-	public List<SubMenuVO> selectSubMenuList() {
+	public List<SubMenuVO> selectSubMenuList(String menuCode) {
 
-		return sqlSession.selectList("adminMapper.selectSubMenuList");
+		return sqlSession.selectList("adminMapper.selectSubMenuList", menuCode);
 	}
 }

@@ -3,9 +3,17 @@ package com.kh.shop.vo;
 public class MenuVO {
 	private String menuCode;
 	private String menuName;
+	private String menuUri;
 	
 	
 	
+	
+	public String getMenuUri() {
+		return menuUri;
+	}
+	public void setMenuUri(String menuUri) {
+		this.menuUri = menuUri;
+	}
 	public String getMenuCode() {
 		return menuCode;
 	}

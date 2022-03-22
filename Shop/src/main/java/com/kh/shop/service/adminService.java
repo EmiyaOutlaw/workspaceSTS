@@ -17,6 +17,6 @@ public interface adminService {
 	List<MenuVO> selectMenuLIst();
 	
 	
-	//상품 관리 메뉴의 하위 메뉴 목록 조회
-	List<SubMenuVO> selectSubMenuList();
+	//하위 메뉴 목록 조회
+	List<SubMenuVO> selectSubMenuList(String menuCode);
 }

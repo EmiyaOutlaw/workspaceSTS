@@ -1,0 +1,7 @@
+오답노트
+
+1. a href=""의 ? 뒤에 쌍따움표를 쓰지 않는다. 그저 a href=""에만 사용 된다.
+
+
+ <a href="/admin/${subMenu.menuUri }?menuCode=${subMenu.menuCode}" class="list-group-item list-group-item-action active" aria-current="true">
+a href=""

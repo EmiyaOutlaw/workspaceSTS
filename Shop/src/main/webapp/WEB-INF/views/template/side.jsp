@@ -10,7 +10,7 @@
 <body>
 <div class="list-group">
 	<c:forEach items="${subMenuList }" var="subMenu">
-		  <a href="/admin/${subMenu.menuUri }" class="list-group-item list-group-item-action active" aria-current="true">
+		  <a href="/admin/${subMenu.menuUri }?menuCode=${subMenu.menuCode}&subMenuCode=${subMenu.subMenuCode}" class="list-group-item list-group-item-action <c:if test="${subMenu.subMenuCode eq selectedSubMenu }">active</c:if>" aria-current="true">
 			${subMenu.subMenuName }
 		  </a>
 	</c:forEach>
