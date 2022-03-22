@@ -35,7 +35,7 @@
    </filter-mapping>
 
 
-그리고 web-app쪽에 있는 java.sun.com 대문자로 변경 
+그리고 web.xml 맨 위,  web-app쪽에 있는 java.sun.com 대문자로 변경 
 ctrl + shift+ x -> 대문자 전환 단축키
 
 xsi:schemaLocation="http://JAVA.SUN.COM/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
@@ -49,7 +49,7 @@ xsi:schemaLocation="http://JAVA.SUN.COM/xml/ns/javaee https://java.sun.com/xml/n
 
 //---------스프링에서 객체를 생성하는 법!!!-------------//
 스프링은 결합도를 낮추기 위해 개발자가 직접적으로 new 키워드를 사용한
-객체 생성을 지양한다. 스프리은 결합도를 낮추기 위해 개발자가 직접 생성하는 객체를
+객체 생성을 지양한다. 스프링은 결합도를 낮추기 위해 개발자가 직접 생성하는 객체를
 스프링 컨테이너가 연결해 준다(IOC/DI).
 
 
