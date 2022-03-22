@@ -38,7 +38,7 @@
 </div>
 <div class="row">
 	<div class="col">
-		메뉴 들어옴
+		<!--메뉴 들어옴 -->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 			<div class="container-fluid">
 				<!-- <a class="navbar-brand" href="#">Navbar</a>

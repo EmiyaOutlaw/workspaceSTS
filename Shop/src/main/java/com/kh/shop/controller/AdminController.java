@@ -34,23 +34,22 @@ public class AdminController {
 	@GetMapping("/categoryManage")
 	public String categoryManage(Model model, String menuCode, String subMenuCode) {
 		
-		
 		//관리자 메뉴 목록 조회 
 		model.addAttribute("menuList", adminService.selectMenuLIst());
 
-		model.addAttribute("selectedMenu", menuCode); //Menu_001 or Menu_002
-		model.addAttribute("selectedSubMenu", subMenuCode); //SUB_MENU_001 OR SUB_MENU_002
-
-		
 		if(menuCode == null) {
 			menuCode = "MENU_001";
-			
 		}
 		
 		if(subMenuCode == null) {
 			subMenuCode = "SUB_MENU_001";
 			
 		}
+		
+		model.addAttribute("selectedSubMenu", subMenuCode); //SUB_MENU_001 OR SUB_MENU_002
+		
+		//현재 menuCode 전송 
+		model.addAttribute("selectedMenu", menuCode); //Menu_001 or Menu_002
 
 		//하위 메뉴 목록 조회
 		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
