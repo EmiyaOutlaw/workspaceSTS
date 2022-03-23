@@ -23,4 +23,12 @@ public interface adminService {
 	
 	//상품 이미지 정보 등록 
 	void insertImages(ImgVO imgVO);
+	
+	//DB 실행 결과에 따라서 자료형 결정
+	//다음에 들어갈 img_code 조회
+	int selectNextImgCode();
+	
+	//다음에 들어갈 ITEM_CODE 조회
+	
+	String selectNextItemCode();
 }

@@ -109,7 +109,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
- 			<form class="row g-3" action="member/join" method="post">
+ 			<form class="row g-3" action="/member/join" method="post">
                <div class="col-12">
                   <label for="inputEmail4" class="form-label">ID</label>
                   <input type="text" class="form-control" id="inputEmail4" name="memId">

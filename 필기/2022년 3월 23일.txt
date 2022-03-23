@@ -4,3 +4,17 @@
 </foreach>
 이해가 안 될 때는 그림을 그려서 한 번 해보도록 하자. 
 
+ 
+경로를 지정할 때 앞에 /를 붙이고 해야한다. 
+<form class="row g-3" action="/member/join" method="post">
+
+
+오라클 쿼리 조회 할 때 join을 한다. 
+
+SELECT ITEM.ITEM_CODE
+, ITEM_NAME
+, ITEM_PRICE
+, ATTACHED_IMG_NAME
+FROM SHOP_ITEM ITEM, ITEM_IMAGE IMG
+WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ AND IS_MAIN = 'Y';

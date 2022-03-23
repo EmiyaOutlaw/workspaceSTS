@@ -34,8 +34,7 @@
 			, ITEM_DETAIL
 			, CATE_CODE
 		) VALUES(
-			(SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6))), 0) + 1, 3, '0') 
-			FROM SHOP_ITEM)
+			#{itemCode}
 			, #{itemName}
 			, #{itemPrice}
 			, #{itemDetail}
@@ -65,7 +64,7 @@
 		<foreach collection="imgList" item="img" separator="UNION ALL">
 			SELECT #{img.imgCode}
 				, #{img.originImgName}
-				, #{img.attachedImgNAme}
+				, #{img.attachedImgName}
 				, #{img.isMain}
 				, #{img.itemCode}
 			FROM DUAL
@@ -75,6 +74,15 @@
 		
 	</insert>
 	
+	<select id="selectNextImgCode" resultType="int">
+		SELECT NVL(MAX(IMG_CODE), 0) + 1
+		FROM ITEM_IMAGE
+	</select>
+	
+	<select id="selectNextItemCode" resultType="String">
+		SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6))), 0) + 1, 3, '0') 
+		FROM SHOP_ITEM
+	</select>
 	
 </mapper>
 

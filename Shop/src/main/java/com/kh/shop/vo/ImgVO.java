@@ -3,7 +3,7 @@ package com.kh.shop.vo;
 import java.util.List;
 
 public class ImgVO {
-	private String imgCode;
+	private int imgCode;
 	private String originImgName;
 	private String attachedImgName;
 	private String isMain;
@@ -19,10 +19,10 @@ public class ImgVO {
 	public void setImgList(List<ImgVO> imgList) {
 		this.imgList = imgList;
 	}
-	public String getImgCode() {
+	public int getImgCode() {
 		return imgCode;
 	}
-	public void setImgCode(String imgCode) {
+	public void setImgCode(int imgCode) {
 		this.imgCode = imgCode;
 	}
 	public String getOriginImgName() {

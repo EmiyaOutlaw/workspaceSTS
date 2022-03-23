@@ -113,6 +113,22 @@ public class AdminController {
 		//이미지 삽입 쿼리 실행 시 빈값을 채워줄 객체
 		ImgVO imgVO = new ImgVO();
 		
+		
+		//1
+		//2
+		//3
+		//....
+		//10
+		//다음에 들어갈 IMG_CODE값을 조회
+		
+		int nextImgCode = adminService.selectNextImgCode();
+		
+		
+		//다음에 들어갈 ITEM_CODE값을 조회
+		
+		String nextItemCode = adminService.selectNextItemCode();
+		
+		
 		//이미지 첨부(파일 업로드)
 		//첨부파일이 들어가는 input 태그들의 name 속성값을 가져온다. 
 		Iterator<String> inputTagNames = multi.getFileNames();
@@ -143,11 +159,12 @@ public class AdminController {
 							file.transferTo(new File(uploadPath + attachedFileName));
 							
 							ImgVO vo = new ImgVO();
-							vo.setImgCode();
+							
+							vo.setImgCode(nextImgCode++); // ex) 8, 9, 10
 							vo.setOriginImgName(originFileName);
 							vo.setAttachedImgName(attachedFileName);
 							vo.setIsMain("N");
-							vo.setItemCode();
+							vo.setItemCode(nextItemCode);
 							imgList.add(vo);
 							
 							
@@ -190,11 +207,11 @@ public class AdminController {
 						
 						
 						ImgVO vo = new ImgVO();
-						vo.setImgCode();
+						vo.setImgCode(nextImgCode++);
 						vo.setOriginImgName(originFileName);
 						vo.setAttachedImgName(attachedFileName);
 						vo.setIsMain("y");
-						vo.setImgCode();
+						vo.setItemCode(nextItemCode);
 						imgList.add(vo);
 						
 						
@@ -215,11 +232,13 @@ public class AdminController {
 		
 		
 		//상품 정보 INSERT (SHOP_ITEM)
+		itemVO.setItemCode(nextItemCode);
 		adminService.insertItem(itemVO);
 		
 		//상품 이미지 정보 INSERT(ITEM_IMAGE)
 		imgVO.setImgList(imgList);
 		adminService.insertImages(imgVO);
+		
 		
 		
 		

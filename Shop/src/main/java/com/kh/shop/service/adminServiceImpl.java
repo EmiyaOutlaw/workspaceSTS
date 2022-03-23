@@ -38,4 +38,16 @@ public class adminServiceImpl implements adminService {
 	public void insertImages(ImgVO imgVO) {
 		sqlSession.insert("adminMapper.insertImages", imgVO);
 	}
+
+	@Override
+	public int selectNextImgCode() {
+		//데이터 조회가 하나만 되면 selectOne. 여러개면 selectList
+		return sqlSession.selectOne("adminMapper.selectNextImgCode");
+	}
+
+	@Override
+	public String selectNextItemCode() {
+		
+		return sqlSession.selectOne("adminMapper.selectNextItemCode");
+	}
 }
