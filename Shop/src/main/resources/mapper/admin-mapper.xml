@@ -51,6 +51,31 @@
 		FROM SUB_MENU
 		WHERE MENU_CODE = #{menuCode}
 	</select>
+	
+	<insert id="insertImages">
+		INSERT INTO ITEM_IMAGE (
+			IMG_CODE
+			, ORIGIN_IMG_NAME
+			, ATTACHED_IMG_NAME
+			, IS_MAIN
+			, ITEM_CODE 
+		)
+		
+			<!-- imgVO.getImgList()  -->
+		<foreach collection="imgList" item="img" separator="UNION ALL">
+			SELECT #{img.imgCode}
+				, #{img.originImgName}
+				, #{img.attachedImgNAme}
+				, #{img.isMain}
+				, #{img.itemCode}
+			FROM DUAL
+		</foreach>
+		
+		
+		
+	</insert>
+	
+	
 </mapper>
 
 

@@ -2,6 +2,7 @@ package com.kh.shop.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.shop.service.adminService;
 import com.kh.shop.service.itemService;
+import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
 
 @Controller
@@ -104,6 +106,13 @@ public class AdminController {
 	@PostMapping("/regItem")
 	// 상품등록
 	public String regItem(ItemVO itemVO, MultipartHttpServletRequest multi) {
+		
+		//여러 이미지 정보를 세팅할 공간 생성
+		List<ImgVO> imgList = new ArrayList<ImgVO>();
+		
+		//이미지 삽입 쿼리 실행 시 빈값을 채워줄 객체
+		ImgVO imgVO = new ImgVO();
+		
 		//이미지 첨부(파일 업로드)
 		//첨부파일이 들어가는 input 태그들의 name 속성값을 가져온다. 
 		Iterator<String> inputTagNames = multi.getFileNames();
@@ -126,16 +135,31 @@ public class AdminController {
 					//원본 파일명
 					String originFileName = file.getOriginalFilename();
 					
-					//첨부할 파일명
-					String attachedFileName = System.currentTimeMillis() + "_" + originFileName;
-					try {
-						file.transferTo(new File(uploadPath + attachedFileName));
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					
+					if(!originFileName.equals("")) {
+						//첨부할 파일명
+						String attachedFileName = System.currentTimeMillis() + "_" + originFileName;
+						try {
+							file.transferTo(new File(uploadPath + attachedFileName));
+							
+							ImgVO vo = new ImgVO();
+							vo.setImgCode();
+							vo.setOriginImgName(originFileName);
+							vo.setAttachedImgName(attachedFileName);
+							vo.setIsMain("N");
+							vo.setItemCode();
+							imgList.add(vo);
+							
+							
+						} catch (IllegalStateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						
+					}
+					
 					}
 					
 				}
@@ -149,22 +173,39 @@ public class AdminController {
 				//name이 "mainImg"인 input 태그의 파일 정보를 가져 옴 
 				MultipartFile file = multi.getFile(inputTagName);
 				
+				
+				
 				//첨부하고자 하는 파일명 
 				String originFileName = file.getOriginalFilename();
 				
-				
-				//첨부할 파일명
-				String attachedFileName = System.currentTimeMillis() + "_" + originFileName;
+				if(!originFileName.equals("")) {
+					//첨부할 파일명
+					//1640104_자바.jpg
+					String attachedFileName = System.currentTimeMillis() + "_" + originFileName;
 
-				//파일 업로드 
-				//매개변수로 경로 및 파일명을 넣어줌
-				try {
-					file.transferTo(new File(uploadPath + attachedFileName));
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+					//파일 업로드 
+					//매개변수로 경로 및 파일명을 넣어줌
+					try {
+						file.transferTo(new File(uploadPath + attachedFileName));
+						
+						
+						ImgVO vo = new ImgVO();
+						vo.setImgCode();
+						vo.setOriginImgName(originFileName);
+						vo.setAttachedImgName(attachedFileName);
+						vo.setIsMain("y");
+						vo.setImgCode();
+						imgList.add(vo);
+						
+						
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
+				
+		
 				
 			}
 		}
@@ -177,6 +218,8 @@ public class AdminController {
 		adminService.insertItem(itemVO);
 		
 		//상품 이미지 정보 INSERT(ITEM_IMAGE)
+		imgVO.setImgList(imgList);
+		adminService.insertImages(imgVO);
 		
 		
 		

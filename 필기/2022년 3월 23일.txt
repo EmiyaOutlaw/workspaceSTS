@@ -1,0 +1,6 @@
+<foreach collection="" open="" close="" separator="">
+		
+		
+</foreach>
+이해가 안 될 때는 그림을 그려서 한 번 해보도록 하자. 
+
