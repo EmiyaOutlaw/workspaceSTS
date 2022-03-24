@@ -22,6 +22,7 @@
 			<tiles:insertAttribute name="menu"/>
 		</div>
 	</div>
+	<div style="height: 16px;"></div>
 	<div class="row">
 		<div class="col">
 			<tiles:insertAttribute name="body"/>

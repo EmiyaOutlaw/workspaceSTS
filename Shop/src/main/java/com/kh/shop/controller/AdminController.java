@@ -210,7 +210,7 @@ public class AdminController {
 						vo.setImgCode(nextImgCode++);
 						vo.setOriginImgName(originFileName);
 						vo.setAttachedImgName(attachedFileName);
-						vo.setIsMain("y");
+						vo.setIsMain("Y");
 						vo.setItemCode(nextItemCode);
 						imgList.add(vo);
 						

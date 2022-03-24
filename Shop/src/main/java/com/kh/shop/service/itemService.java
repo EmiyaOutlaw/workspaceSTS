@@ -9,6 +9,12 @@ public interface itemService {
 	//카테고리 목록 조회
 	
 	List<CategoryVO> selectCategoryList();
+	
+	
+	
+	//상품 목록 조회
+	List<ItemVO> selectItemList();
+
 
 
 }

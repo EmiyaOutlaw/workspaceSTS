@@ -16,19 +16,32 @@ import com.kh.shop.vo.ItemVO;
 public class itemController {
 	
 	@Resource(name = "itemService")
-	private itemService itemservice;
+	private itemService itemService;
 	
 	
+	
+	//전체상품 목록 페이지 
 	@GetMapping("/itemList")
 	public String itemList(Model model, String cateCode) {
 		//category 목록
-		model.addAttribute("categoryList", itemservice.selectCategoryList());
+		model.addAttribute("categoryList", itemService.selectCategoryList());
 		
 		
 		//메뉴에서 클릭한 카테고리의 코드값
 		model.addAttribute("selectedCategory", cateCode);
+		
+		//상품 목록 조회 
+		model.addAttribute("itemList", itemService.selectItemList());
+		
+		
 		return "item/item_list";
 		
+	}
+	
+	@GetMapping("/itemDetail")
+	public String itemDetail() {
+		
+		return "item/item_detail";
 	}
 	
 	

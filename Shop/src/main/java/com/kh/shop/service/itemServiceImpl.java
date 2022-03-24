@@ -22,6 +22,15 @@ public class itemServiceImpl implements itemService{
 		return sqlSession.selectList("itemMapper.selectCategoryList");
 	}
 
+	@Override
+	public List<ItemVO> selectItemList() {
+
+		
+		return sqlSession.selectList("itemMapper.selectItemList");
+	}
+	
+
+
 	
 
 }
