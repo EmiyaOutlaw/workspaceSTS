@@ -24,8 +24,15 @@
 		<result column="ITEM_DETAIL"	property="itemDetail"/>
 		<result column="ITEM_STOCK" 	property="itemStock"/>
 		<result column="CATE_CODE" 		property="cateCode"/>
-		<association property=""></association>
-		<collection property=""></collection>
+		<collection property="imgList" resultMap="img"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.shop.vo.ImgVO" id="img">
+		<id column="IMG_CODE" 				property="imgCode"/>
+		<result column="ORIGIN_IMG_NAME" 	property="originImgName"/>
+		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
+		<result column="IS_MAIN" 			property="isMain"/>
+		<result column="ITEM_CODE" 			property="itemCode"/>
 	</resultMap>
 
 	<select id="selectCategoryList" resultMap="category">

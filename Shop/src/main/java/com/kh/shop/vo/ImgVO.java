@@ -13,6 +13,11 @@ public class ImgVO {
 	
 	
 	
+	@Override
+	public String toString() {
+		return "ImgVO [imgCode=" + imgCode + ", originImgName=" + originImgName + ", attachedImgName=" + attachedImgName
+				+ ", isMain=" + isMain + ", itemCode=" + itemCode + ", imgList=" + imgList + "]";
+	}
 	public List<ImgVO> getImgList() {
 		return imgList;
 	}

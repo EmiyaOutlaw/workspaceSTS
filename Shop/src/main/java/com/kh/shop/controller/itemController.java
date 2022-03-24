@@ -39,7 +39,13 @@ public class itemController {
 	}
 	
 	@GetMapping("/itemDetail")
-	public String itemDetail() {
+	public String itemDetail(String itemCode, Model model) {
+		
+		
+		ItemVO result = itemService.selecteItemDetail(itemCode);
+		System.out.println(result);
+		
+		model.addAttribute("item", result);
 		
 		return "item/item_detail";
 	}

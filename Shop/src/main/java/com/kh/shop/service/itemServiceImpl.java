@@ -28,6 +28,12 @@ public class itemServiceImpl implements itemService{
 		
 		return sqlSession.selectList("itemMapper.selectItemList");
 	}
+
+	@Override
+	public ItemVO selecteItemDetail(String itemCode) {
+		return sqlSession.selectOne("itemMapper.selectItemDetail", itemCode);
+		
+	}
 	
 
 

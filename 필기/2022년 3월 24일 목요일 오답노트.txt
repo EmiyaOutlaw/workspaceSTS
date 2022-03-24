@@ -24,3 +24,14 @@ SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME FROM USER_CONSTRAINTS WHERE 
 
 1 : n -> collection
 1 : 1 -> association
+
+
+4.데이터를 넘길 때 data-뭐로 넘길 수 있다. 
+
+예시
+<span id="priceSpan" data-price="${item.itemPrice }">
+
+
+받을 때 
+//개당 가격 정보
+var price = document.getElementById('priceSpan').dataset.price;
