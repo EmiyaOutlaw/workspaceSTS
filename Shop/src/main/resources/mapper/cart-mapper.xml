@@ -2,9 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="cartMapper">
+	<resultMap type="com.kh.shop.vo.CartVO" id="cart">
+		<id column="CART_NUM" 		property="cartNum"/>
+		<result column="ITEM_CODE" 	property="itemCode"/>
+		<result column="MEM_ID" 	property="memId"/>
+		<result column="ITEM_CNT" 	property="itemCnt"/>
+		<result column="CREATE_DATE" property="createDate"/>
+	</resultMap>
 	
+	
+	<insert id="insertCart">
+		INSERT INTO SHOP_CART(
+			CART_NUM
+			, ITEM_CODE
+			, MEM_ID
+			, ITEM_CNT
+		) VALUES(
+			(SELECT NVL(MAX(CART_NUM), 0) + 1 FROM SHOP_CART)
+			, #{itemCode}
+			, #{memId}
+			, #{itemCnt}
+		)
+	</insert>
 
-</mapper>
+ 	<!-- <select id="selectCartList" resultMap="">
+	SELECT ITEM.ITEM_NAME
+		    , ITEM.ITEM_PRICE 
+		    , CART.ITEM_CNT
+		    , ITEM.ITEM_PRICE * CART.ITEM_CNT AS TOTAL_PRICE
+		    , IMG.ATTACHED_IMG_NAME
+		FROM SHOP_ITEM ITEM, SHOP_CART CART, ITEM_IMAGE IMG
+		WHERE ITEM.ITEM_CODE = CART.ITEM_CODE
+		AND CART.ITEM_CODE = IMG.ITEM_CODE 
+		AND CART.MEM_ID = #{memId}
+		AND IMG.IS_MAIN = 'Y'
+	</select> -->
+</mapper> 
 
 
 
