@@ -1,0 +1,52 @@
+ON DELETE CASCADE
+부모 테이블이 삭제 되면 자식 테이블도 삭제 된다.
+////////////////////////////////////////////
+
+
+CartController
+CartService
+CartServiceImpl
+cart-mapper.xml
+
+
+/resources/css/cart/...
+/resources/js/cart/....
+views/cart/cart_list.jsp 
+
+
+상품상세 보기 페이지에서 '장바구니' 클릭 시 데이터가 insert 되어야 함. 
+등록 후 '장바구니에 상품이 추가 되었습니다.'
+장바구니로 갈까요
+예-> 장바구니 목록 페이지로 이동 
+아니오 -> 페이지 전환 없음 
+
+
+내 정보 보기라는 텍스트를 변경 -> 장바구니 가기
+클릭 시 장바구니 가기로 가기. 
+
+장바구니 목록페이지
+No	상품이미지(item.attachedImgName)	상품명(item.itemName)	가격(item.itemPrice)
+		수량(item.itemStock)		총가격
+
+
+안 될 때 개발자 모드해서 보기 f12
+
+
+*form 태그 안에 form 태그 불가능하다. 
+
+<form>
+	<form></form>
+</form>
+	
+
+
+////////////////////
+
+
+item_detail.jsp에서 넘긴 데이터
+
+hidden으로 ${item.itemCode}
+name을 줘서 itemCnt값을 가져왔다. 
+
+
+그럼... 상품 이미지, 삼품명, 가격, 수량, 총가격을 네임을 주어서 가져오면 될 듯 하다. 

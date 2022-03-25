@@ -31,3 +31,17 @@ function setTotalPrice(){
 
 	
 }
+
+//----------------장바구니 코드--------------//
+
+function insertCart(){
+	
+	var formTag = document.getElementById('itemForm');
+	formTag.action = '/cart/insertCart';
+	formTag.submit();
+	
+}
+
+//------------구매하는 코드------------
+
+

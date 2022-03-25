@@ -52,7 +52,7 @@
 		AND IS_MAIN = 'Y'
 		ORDER BY ITEM.ITEM_CODE DESC  
 	</select>
-	
+
 	<select id="selectItemDetail" resultMap="item2">
 		SELECT ITEM.ITEM_CODE 
 		    , ITEM_NAME 
