@@ -1,0 +1,19 @@
+ view : 가상테이블 
+--1. 데이터 보안 
+--2.자주 쓰는 join, 서브쿼리(subQuery)를 편하게 사용하기 위해서 
+
+
+오류 노트
+
+ORDER BY CART_NUM DESC, Error Msg = ORA-00904: "ITEM_CDOE": 부적합한 식별자
+
+-> 오타가 났다. 이럴 때  mapper을 확인하다. 만약 문제가 없으면 db에서 column명을 select를 한다. 
+
+
+
+
+
+<div class="col-2 offset-8" style="background-color: aqua;">1</div>
+
+offset - 수
+12칸에서 수 빼 

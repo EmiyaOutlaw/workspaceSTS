@@ -10,6 +10,18 @@
 		<result column="CREATE_DATE" property="createDate"/>
 	</resultMap>
 	
+	<resultMap type="com.kh.shop.vo.CartViewVO" id="cartView">
+		<id column="CART_NUM" 				property="cartNum"/>
+		<result column="ITEM_CODE" 			property="itemCode"/>
+		<result column="ITEM_NAME" 			property="itemName"/>
+		<result column="ITEM_PRICE" 		property="itemPrice"/>
+		<result column="TOTAL_PRICE" 		property="totalPrice"/>
+		<result column="ITEM_CNT" 			property="itemCnt"/>
+		<result column="CREATE_DATE" 		property="createDate"/>
+		<result column="MEM_ID" 			property="memId"/>
+		<result column="ATTACHED_IMG_NAME"  property="attachedImgName"/>
+	
+	</resultMap>
 	
 	<insert id="insertCart">
 		INSERT INTO SHOP_CART(
@@ -25,18 +37,23 @@
 		)
 	</insert>
 
- 	<!-- <select id="selectCartList" resultMap="">
-	SELECT ITEM.ITEM_NAME
-		    , ITEM.ITEM_PRICE 
-		    , CART.ITEM_CNT
-		    , ITEM.ITEM_PRICE * CART.ITEM_CNT AS TOTAL_PRICE
-		    , IMG.ATTACHED_IMG_NAME
-		FROM SHOP_ITEM ITEM, SHOP_CART CART, ITEM_IMAGE IMG
-		WHERE ITEM.ITEM_CODE = CART.ITEM_CODE
-		AND CART.ITEM_CODE = IMG.ITEM_CODE 
-		AND CART.MEM_ID = #{memId}
-		AND IMG.IS_MAIN = 'Y'
-	</select> -->
+ 	<select id="selectCartList" resultMap="cartView">
+		SELECT CART_NUM
+			, ITEM_CODE
+			, ITEM_NAME
+			, ITEM_PRICE
+			, TOTAL_PRICE
+			, ITEM_CNT
+			, CREATE_DATE
+			, MEM_ID
+			, ATTACHED_IMG_NAME
+		FROM CART_VIEW
+		WHERE MEM_ID = #{memId}
+		ORDER BY CART_NUM DESC
+	</select> 
+	
+	
+	
 </mapper> 
 
 
