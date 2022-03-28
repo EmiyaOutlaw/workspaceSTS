@@ -62,7 +62,7 @@ row{
 								      </th>
 								      <td>1</td>
 								      <td>
-								      	<img width="80px;" alt="" src="${item.attachedImgName }">
+								      	<img width="80px;" alt="" src="/resources/images/${item.attachedImgName }">
 								      </td>
 								      <td>${item.itemName }</td>
 								      <td>${item.itemPrice }</td>
@@ -78,7 +78,7 @@ row{
 								      </td>
 								      <td>${item.totalPrice }</td>
 								      <td>
-								      	<button type="button" class="btn btn-warning">삭제</button>
+								      	<button type="button" class="btn btn-warning" onclick="location.href='/cart/itemDelete?itemCode=${item.itemCode}'">삭제</button>
 								      </td>
 								    </tr>
 							    </c:forEach>				  			
@@ -91,14 +91,13 @@ row{
 								</tr>
 							</c:otherwise>
 				  		</c:choose>
-				  	</c:forEach>
 				  </tbody>
 			</table>
 		</div>
 		<div class="col-12">
 			<div class="row">
 				<div class="col-1 offset-10 text-end" style="background-color: #ffc300; padding: 6px; border: 1px solid #ffc300; font-style: italic; font-weight: bold; border-top-left-radius: 10px; border-bottom-left-radius: 10px;  ">구매 가격</div>
-				<div class="col-1" style="padding: 6px; border-bottom: 1px solid #ffc300">10,000</div>
+				<div class="col-1" style="padding: 6px; border-bottom: 1px solid #ffc300">${totalPrice }</div>
 			</div>
 		</div>
 		<div class="col-12">

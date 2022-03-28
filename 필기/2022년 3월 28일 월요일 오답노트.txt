@@ -17,3 +17,31 @@ ORDER BY CART_NUM DESC, Error Msg = ORA-00904: "ITEM_CDOE": 부적합한 식별�
 
 offset - 수
 12칸에서 수 빼 
+
+
+0.장바구니 테이블 insert 
+
+1.상품이 이미 장바구니에 존재하는지 체크
+SELECT *
+FROM SHOP_CART
+WHERE ITEM_CODE = 'ITEM_001'
+AND MEM_ID = 'admin'
+
+2.만약 상품이 없다면 insert하기 
+  만약 상품이 있다면 -> 수량만 updaet 
+
+
+MERGIN INTO 
+
+
+		
+		//장바구니 목록 조회
+		List<CartViewVO> cartList = cartService.selectCartList(memId);
+		model.addAttribute("cartList", cartList);
+				
+		//구매가격
+		int totalPrice = 0;
+		for(CartViewVO e : cartList) {
+			totalPrice = totalPrice + e.getTotalPrice();
+			
+		}
