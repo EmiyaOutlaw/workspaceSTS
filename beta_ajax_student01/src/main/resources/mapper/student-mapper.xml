@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="studentMapper">
+	<resultMap type="com.kh.shop.vo.ClassVO" id="classInfo">
+		<id column="CLASS_CODE" 	property="classCode"/>
+		<result column="CLASS_NAME" property="className"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.shop.vo.StudentVO" id="stuInfo">
+		<id column="STU_NUM" 		property="stuNum"/>
+		<result column="STU_NAME" 	property="stuName"/>
+		<result column="KOR_SCORE" 	property="korScore"/>
+		<result column="ENG_SCORE" 	property="engScore"/>
+		<result column="CLASS_CODE" property="classCode"/>
+	</resultMap>
+	
+	<select id="selectClassList" resultMap="classInfo">
+		SELECT CLASS_CODE
+			, CLASS_NAME
+		FROM CLASS_INFO
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
