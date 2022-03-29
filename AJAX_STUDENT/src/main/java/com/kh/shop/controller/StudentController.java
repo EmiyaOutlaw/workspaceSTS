@@ -3,6 +3,9 @@ package com.kh.shop.controller;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -37,11 +40,21 @@ public class StudentController {
 		return "student_manage";
 	}
 	
-	@ResponseBody
+	@ResponseBody //요걸로 페이지 이동인지 아닌지 구별 할 수 있다. 
 	@PostMapping("/sutdentListAjax")
-	public String studentListAjax() {
-		System.out.println("졸려.....");
-		return "";
+	public List<StudentVO> studentListAjax(ClassVO classVO) {
+		List<StudentVO> list = stuService.selectStudentList(classVO);
+	
+		return list;
+	}
+	
+	
+	@ResponseBody //요걸로 페이지 이동인지 아닌지 구별 할 수 있다. 
+	@PostMapping("/stuDetail")
+	public StudentVO stuDetail(int stuNum) {
+		
+		StudentVO list = stuService.selectstuDetail(stuNum);
+		return list;
 	}
 	
 	

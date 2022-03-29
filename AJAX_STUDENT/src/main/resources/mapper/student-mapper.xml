@@ -34,6 +34,16 @@
 	</select>
 	
 	
+	<select id="selectstuDetail" resultMap="stuInfo">
+		SELECT STU_NUM
+			, STU_NAME
+			, KOR_SCORE
+			, ENG_SCORE
+		FROM STUDENT_INFO
+		WHERE STU_NUM = #{stuNum}
+	</select>
+	
+	
 	
 </mapper>
 

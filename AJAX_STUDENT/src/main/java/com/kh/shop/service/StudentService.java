@@ -13,4 +13,7 @@ public interface StudentService {
 	//학생 조회
 	List<StudentVO> selectStudentList(ClassVO classVO);
 	
+	//학생 개인정보 조회
+	StudentVO selectstuDetail(int StuNum);
+	
 }

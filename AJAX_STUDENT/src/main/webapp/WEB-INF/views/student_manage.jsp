@@ -29,8 +29,15 @@
 }
 .stuTable tr, .stuTable td{
 	border: 1px solid black; 
-	
-
+}
+.stuInfoTable{
+	width: 300px;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+.stuInfoTable tr, .stuInfoTable td{
+	border: 1px solid black;	
 }
 </style>
 </head>
@@ -52,25 +59,50 @@
 			</div>
 			<div>
 				<table class="stuTable">
-					<tr>
-						<td>No</td>
-						<td>학생명</td>
-						<td>학급명</td>
-					</tr>
-					<c:forEach items="${stuList }" var="stuInfo">
+					<thead>
 						<tr>
-							<td></td>
-							<td id="stuName">${stuInfo.stuName }</td>
-							<td id="className">${stuInfo.className }</td>
+							<td>No</td>
+							<td>학생명</td>
+							<td>학급명</td>
 						</tr>
-					</c:forEach>
+					</thead>
+					<tbody id="stuListTbody">
+						<c:forEach items="${stuList }" var="stuInfo" varStatus="status">
+							<tr>
+								<td>${stuList.size()-status.index}</td>
+								<td><span onclick="showInfo(${stuInfo.stuNum});" style="cursor: pointer;">${stuInfo.stuName }</span></td>
+								<td>${stuInfo.className }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 			</div>
 		</td>
-		<td></td>
+		<td>
+			<div>
+				<table class="stuInfoTable">
+					<colgroup>
+						<col width="20%">
+						<col width="30%">
+						<col width="20%">
+						<col width="30%">
+					</colgroup>
+					<tr>
+						<td>이름</td>
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<td>국어점수</td>
+						<td></td>
+						<td>영어점수</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+		</td>
 	</tr>
 </table>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script><!--jquery 를 사용할 수 있게 하는 것  -->
-<script type="text/javascript" src="resources/student_manage.js"></script>
+<script type="text/javascript" src="/resources/js/student_manage.js?ver=22"></script>
 </body>
 </html>

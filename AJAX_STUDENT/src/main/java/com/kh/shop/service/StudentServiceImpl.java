@@ -35,4 +35,12 @@ public class StudentServiceImpl implements StudentService {
 		return sqlSession.selectList("studentMapper.selectStuList", classVO);
 
 	}
+
+
+
+	@Override
+	public StudentVO selectstuDetail(int stuNum) {
+		
+		return sqlSession.selectOne("studentMapper.studentMapper");
+	}
 }
