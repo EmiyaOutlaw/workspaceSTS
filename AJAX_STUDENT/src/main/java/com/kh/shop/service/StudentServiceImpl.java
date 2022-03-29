@@ -17,16 +17,22 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	@Override
-	public List<ClassVO> selectClass() {
-		return sqlSession.selectList("studentMapper.selectClass");
-	
-	}
+
+
+
 
 	@Override
-	public List<StudentVO> selectStudent() {
-		
-		
-		return sqlSession.selectList("studentMapper.selectStudent");
+	public List<ClassVO> selectClassList() {
+		return sqlSession.selectList("studentMapper.selectClassList");
+
+	}
+
+
+
+	@Override
+	public List<StudentVO> selectStudentList(ClassVO classVO) {
+
+		return sqlSession.selectList("studentMapper.selectStuList", classVO);
+
 	}
 }

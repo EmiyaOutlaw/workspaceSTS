@@ -2,34 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="studentMapper">
-	<resultMap type="com.kh.shop.vo.ClassVO" id="class">
+	<resultMap type="com.kh.shop.vo.ClassVO" id="classInfo">
 		<id column="CLASS_CODE" 	property="classCode"/>
 		<result column="CLASS_NAME" property="className"/>
 	</resultMap>
 	
- 	<resultMap type="com.kh.shop.vo.StudentVO" id="student">
+ 	<resultMap type="com.kh.shop.vo.StudentVO" id="stuInfo">
 		<id	column="STU_NUM" 			property="stuNum"/>
 		<result column="STU_NAME" 		property="stuName"/>
 		<result column="KOR_SCORE" 		property="korScore"/>
 		<result column="ENG_SCORE" 		property="engScore"/>
 		<result column="CLASS_CODE" 	property="classCode"/>
+		<result column="CLASS_NAME" 	property="className"/>
 	</resultMap>
 	
-	<select id="selectClass" resultMap="class">
+	<select id="selectClassList" resultMap="classInfo">
 		SELECT CLASS_CODE
 			, CLASS_NAME
 		FROM CLASS_INFO
 	</select>
 	
-	<select id="selectStudent" resultMap="student">
+	<select id="selectStuList" resultMap="stuInfo">
 		SELECT STU_NUM
 			, STU_NAME
-			, KOR_SCORE
-			, ENG_SCORE
-			, STU.CLASS_CODE
 			, CLASS_NAME
-			FROM STUDENT_INFO STU, CLASS_INFO CLASS
-			WHERE STU.CLASS_CODE = CLASS.CLASS_CODE
+		FROM STUDENT_INFO S, CLASS_INFO C
+		WHERE S.CLASS_CODE = C.CLASS_CODE
+		<if test="classCode != null and !classCode.equals('')">
+		AND S.CLASS_CODE = #{classCode}
+		</if>
 	</select>
 	
 	
