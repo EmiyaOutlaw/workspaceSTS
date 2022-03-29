@@ -1,0 +1,16 @@
+	<select id="selectStuList" resultMap="stuInfo">
+		SELECT STU_NUM
+			, STU_NAME
+			, CLASS_NAME
+		FROM STUDENT_INFO S, CLASS_INFO C
+		WHERE S.CLASS_CODE = C.CLASS_CODE
+		
+		
+		String class에  classCode  변수에 대한 getter가 없다
+
+
+
+		<if test="classCode != null and !classCode.equals('')">
+		AND CLASS_CODE = #{classCode}
+		</if>
+	</select>
