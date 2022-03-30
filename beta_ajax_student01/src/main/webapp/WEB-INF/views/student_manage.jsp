@@ -36,7 +36,7 @@
 	<tr>
 		<td>
 			<div style="text-align: center; margin-bottom: 20px;">
-				<select>
+				<select onchange="selectStuListAjax();" id="selectClass">
 					<option>전체</option>
 					<c:forEach items="${classList}" var="classInfo">
 						<option>${classInfo.className }</option>
@@ -52,12 +52,14 @@
 							<td>학급명</td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td></td>
-							<td>숨결</td>
-							<td>야생의</td>
-						</tr>
+					<tbody id="stuListTbody">
+						<c:forEach items="${stuList }" var="stuInfo" varStatus="status">
+							<tr>
+								<td>${status.index + 1}</td>
+								<td><span onclick="showInfo(${stuInfo.stuNum});" style="cursor: pointer;">${stuInfo.stuName }</span></td>
+								<td>${stuInfo.className }</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -67,5 +69,6 @@
 		</td>
 	</tr>
 </table>
+<script type="text/javascript" src="/resources/js/student_manage.js?ver=1"></script>
 </body>
 </html>

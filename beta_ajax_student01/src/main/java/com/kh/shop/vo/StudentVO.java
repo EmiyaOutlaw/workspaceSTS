@@ -2,17 +2,28 @@ package com.kh.shop.vo;
 
 
 public class StudentVO {
-	private int stuNaum;
+	private int stuNum;
 	private String stuName;
 	private int korScore;
 	private int engScore;
 	private String classCode;
-	public int getStuNaum() {
-		return stuNaum;
+	private String className;
+	
+	
+	
+	public int getStuNum() {
+		return stuNum;
 	}
-	public void setStuNaum(int stuNaum) {
-		this.stuNaum = stuNaum;
+	public void setStuNum(int stuNum) {
+		this.stuNum = stuNum;
 	}
+	public String getClassName() {
+		return className;
+	}
+	public void setClassName(String className) {
+		this.className = className;
+	}
+	
 	public String getStuName() {
 		return stuName;
 	}

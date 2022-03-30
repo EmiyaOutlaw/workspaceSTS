@@ -13,6 +13,7 @@
 		<result column="KOR_SCORE" 	property="korScore"/>
 		<result column="ENG_SCORE" 	property="engScore"/>
 		<result column="CLASS_CODE" property="classCode"/>
+		<result column="CLASS_NAME" property="className"/>
 	</resultMap>
 	
 	<select id="selectClassList" resultMap="classInfo">
@@ -20,6 +21,17 @@
 			, CLASS_NAME
 		FROM CLASS_INFO
 	</select>
+	
+	<select id="selectStuList" resultMap="stuInfo">
+		SELECT STU_NUM
+			, STU_NAME
+			, CLASS_NAME
+		FROM STUDENT_INFO STU, CLASS_INFO CLASSES
+		WHERE  STU.CLASS_CODE = CLASSES.CLASS_CODE
+	</select>
+	
+	
+	
 </mapper>
 
 

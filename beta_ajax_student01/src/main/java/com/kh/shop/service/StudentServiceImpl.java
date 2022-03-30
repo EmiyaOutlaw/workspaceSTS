@@ -23,6 +23,13 @@ public class StudentServiceImpl implements StudentService {
 		
 		return sqlSession.selectList("studentMapper.selectClassList") ;
 	}
+
+
+	@Override
+	public List<StudentVO> selectStuList(ClassVO classVO) {
+		return sqlSession.selectList("studentMapper.selectStuList", classVO);
+
+	}
 	
 
 }

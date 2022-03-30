@@ -10,4 +10,6 @@ public interface StudentService {
 	//반 조회
 	List<ClassVO> selectClassList();
 	
+	//학생 조회
+	List<StudentVO> selectStuList(ClassVO classVO);
 }
