@@ -39,8 +39,16 @@ public class StudentServiceImpl implements StudentService {
 
 
 	@Override
-	public StudentVO selectstuDetail(int stuNum) {
+	public StudentVO selectstuDetail(String stuNum) {
 		
-		return sqlSession.selectOne("studentMapper.studentMapper");
+		return sqlSession.selectOne("studentMapper.selectstuDetail", stuNum);
+	}
+
+
+
+	@Override
+	public void updateScore(StudentVO studentVO) {
+
+		sqlSession.update("studentMapper.updateScore", studentVO);
 	}
 }

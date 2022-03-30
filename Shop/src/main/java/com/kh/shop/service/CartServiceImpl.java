@@ -30,4 +30,10 @@ public class CartServiceImpl implements CartService {
 		return sqlSession.selectList("cartMapper.selectCartList", memId);
 	}
 
+	
+	@Override
+	public void itemDelete(String itemCode) {
+
+		 sqlSession.delete("cartMapper.itemDelete", itemCode);
+	}
 }

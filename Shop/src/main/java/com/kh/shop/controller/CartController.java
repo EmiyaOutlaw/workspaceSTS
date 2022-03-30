@@ -65,12 +65,15 @@ public class CartController {
 
 	}
 	
+
+
 	@GetMapping("/itemDelete")
-	public String itemDelete(String itemCode) {
+	public String itemDelete(String itemCode, Model model) {
 		
-		return "redirect:/cart/cartList";		
-
+		cartService.itemDelete(itemCode);
+		
+		return "redirect:/item/itemDetail";
+		
 	}
-
 
 }

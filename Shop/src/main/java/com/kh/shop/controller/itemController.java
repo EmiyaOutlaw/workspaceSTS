@@ -50,5 +50,8 @@ public class itemController {
 		return "item/item_detail";
 	}
 	
+
+	
+	
 	
 }

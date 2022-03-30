@@ -44,6 +44,15 @@
 	</select>
 	
 	
+	<update id="updateScore">
+		UPDATE STUDENT_INFO
+		SET
+		KOR_SCORE = #{korScore}
+		, ENG_SCORE = #{engScore}
+		WHERE STU_NUM = #{stuNum}
+		
+	</update>
+	
 	
 </mapper>
 

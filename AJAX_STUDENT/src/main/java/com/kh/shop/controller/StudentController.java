@@ -51,12 +51,22 @@ public class StudentController {
 	
 	@ResponseBody //요걸로 페이지 이동인지 아닌지 구별 할 수 있다. 
 	@PostMapping("/stuDetail")
-	public StudentVO stuDetail(int stuNum) {
+	public StudentVO stuDetail(String stuNum) {
 		
-		StudentVO list = stuService.selectstuDetail(stuNum);
-		return list;
+		
+		return stuService.selectstuDetail(stuNum);
 	}
 	
+	
+	
+	@ResponseBody //요걸로 페이지 이동인지 아닌지 구별 할 수 있다. 
+	@PostMapping("/updateScore")
+	public void updateScore(StudentVO studentVO) {
+		
+		stuService.updateScore(studentVO);
+		
+				
+	}
 	
 	
 }

@@ -39,6 +39,17 @@
 .stuInfoTable tr, .stuInfoTable td{
 	border: 1px solid black;	
 }
+#changeScore{
+	width: 480px;
+	text-align: center;
+	margin: 0 auto;
+	background-color: aqua;
+	
+}
+#checkScore{
+	text-align: center;
+	margin: 0 auto;
+}
 </style>
 </head>
 <body>
@@ -79,30 +90,13 @@
 			</div>
 		</td>
 		<td>
-			<div>
-				<table class="stuInfoTable">
-					<colgroup>
-						<col width="20%">
-						<col width="30%">
-						<col width="20%">
-						<col width="30%">
-					</colgroup>
-					<tr>
-						<td>이름</td>
-						<td colspan="3"></td>
-					</tr>
-					<tr>
-						<td>국어점수</td>
-						<td></td>
-						<td>영어점수</td>
-						<td></td>
-					</tr>
-				</table>
+			<div id="stuDetailDiv">
+				
 			</div>
 		</td>
 	</tr>
 </table>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script><!--jquery 를 사용할 수 있게 하는 것  -->
-<script type="text/javascript" src="/resources/js/student_manage.js?ver=22"></script>
+<script type="text/javascript" src="/resources/js/student_manage.js?ver=43"></script>
 </body>
 </html>

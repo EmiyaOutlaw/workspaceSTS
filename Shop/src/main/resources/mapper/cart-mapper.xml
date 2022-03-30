@@ -62,12 +62,9 @@
 	</select> 
 	
 	
-	<delete id="">
-		DELETE 
-		
-		FROM CART_VIEW
-		WHERE ITEM_CODE = #{itemCode}
-	
+	<delete id="itemDelete">
+		DELETE FROM SHOP_ITEM
+		WHREE ITEM_CODE = #{itemCode}
 	</delete>
 	
 	
