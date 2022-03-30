@@ -34,7 +34,7 @@
 			WHERE MEM_ID = #{memId}
 		WHEN NOT MATCHED THEN 
 			INSERT (
-				CART_NUMR
+				CART_NUM
 				, ITEM_CODE
 				, MEM_ID
 				, ITEM_CNT
@@ -62,11 +62,19 @@
 	</select> 
 	
 	
-	<delete id="itemDelete">
-		DELETE FROM SHOP_ITEM
-		WHREE ITEM_CODE = #{itemCode}
+	<delete id="deleteCart">
+		DELETE FROM SHOP_CART
+		WHERE ITEM_CODE = #{itemCode}
+		AND MEM_ID = #{memId}
 	</delete>
 	
+	<update id="updateItemCnt">
+		UPDATE SHOP_CART 
+		SET 
+		ITEM_CNT = #{itemCnt}
+		WHERE MEM_ID = #{memId}
+		AND ITEM_CODE = #{itemCode}
+	</update>
 	
 </mapper> 
 

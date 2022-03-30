@@ -1,0 +1,44 @@
+----=-자바스크립트 노드 찾기----
+
+
+//부모 노드
+var node = document.getElementById('a').parentNode;
+
+
+//자식 노드들
+var node = document.getElementById('a').childNodes;
+
+
+자식의 몇 번짹 선택 할 지 
+nodes[0].innerText;
+
+
+//첫번째 자식 노드
+var node = document.getElementById('a').firstChild;
+var node = document.getElementById('a').firstElementChild;
+
+
+//마지막 자식 노드 
+var node = document.getElementById('a').lastChild
+var node = document.getElementById('a').lastChild
+
+
+//이전의 형제
+var node = document.getElementById('a').previousSibling
+var node = document.getElementById('a').previousElementSibling
+
+
+//다음의 형제
+var node = document.getElementById('a').nextSibling
+var node = document.getElementById('a').nextElementSibling
+
+
+
+공백도 인지하기 땜문에. 보통 Element를 붙여 써야 한다. 
+
+
+
+
+
+-- 변수를 가져 올 때 그 값이 문자일 경우 ''를 써야 한다. 만약에 숫자인 경우는 안 쓰고 그냥 가져온다. 
+<button type=button class="btn btn-warning" onclick="updateItemCnt(this, '${item.itemCode}');">변경</button>				      		

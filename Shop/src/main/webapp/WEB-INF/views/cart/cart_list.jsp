@@ -72,13 +72,16 @@ row{
 								      			<input type="number" class="form-control" value="${item.itemCnt }">
 											</div>
 								      		<div class="col-5 d-grid"> <!--d-grid 그만큼 찬다.  -->
-								      			<button type=button class="btn btn-warning">변경</button>				      		
+								      			<button type=button class="btn btn-warning" onclick="updateItemCnt(this, '${item.itemCode}');">변경</button>				      		
 								      		</div>
 								      	</div>
 								      </td>
 								      <td>${item.totalPrice }</td>
 								      <td>
-								      	<button type="button" class="btn btn-warning" onclick="location.href='/cart/itemDelete?itemCode=${item.itemCode}'">삭제</button>
+								      	<form action="/cart/deleteCart" method="post" id="deleteCartForm">
+								      		<input type="hidden" name="itemCode" value="${item.itemCode }">
+								      		<button type="button" class="btn btn-warning" onclick="deleteCart(this);">삭제</button>
+								      	</form>
 								      </td>
 								    </tr>
 							    </c:forEach>				  			
@@ -112,5 +115,6 @@ row{
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=3"></script>
 </body>
 </html>

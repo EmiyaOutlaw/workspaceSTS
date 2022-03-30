@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 
 import com.kh.shop.service.CartService;
@@ -67,12 +68,26 @@ public class CartController {
 	
 
 
-	@GetMapping("/itemDelete")
-	public String itemDelete(String itemCode, Model model) {
+	@PostMapping("/deleteCart")
+	public String deleteCart(CartVO cartVO, HttpSession session) {
+		String memId = ((MemberVO)session.getAttribute("loginInfo")).getMemId();
 		
-		cartService.itemDelete(itemCode);
+		cartVO.setMemId(memId);
+		cartService.deleteCart(cartVO);
 		
-		return "redirect:/item/itemDetail";
+		return "redirect:/cart/cartList";
+	}
+	
+	@ResponseBody
+	@PostMapping("/updateItemCnt")
+	public void updateItemCnt(CartVO cartVO, HttpSession session ) {
+		
+		String memId = ((MemberVO)session.getAttribute("loginInfo")).getMemId();
+		cartVO.setMemId(memId);
+		
+		cartService.updateItemCnt(cartVO);
+		
+		
 		
 	}
 
