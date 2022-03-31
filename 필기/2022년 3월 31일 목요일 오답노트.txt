@@ -1,0 +1,21 @@
+1000단위 표시
+.toLocaleString()
+
+ㄹ 한자 ->￦
+
+
+
+	//선택한 상품코드를 저장할 배열 생성 
+	var itemCodeArr = [];
+	itemCodeArr[0] = 'hello';
+	itemCodeArr[1] = 30;
+
+
+js는 자료형을 신경 쓰지 않는다.
+
+
+
+<foreach collection="itemCodeArr" item="itemCode" open="(" close=")" separator=",">
+			#{itemCode}
+</foreach> 
+

@@ -1,5 +1,6 @@
 package com.kh.shop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -90,5 +91,16 @@ public class CartController {
 		
 		
 	}
+	//선택 상품 장바구니에서 삭제 
+	@GetMapping("/deleteCarts")
+	public String deleteCarts(CartVO cartVO, HttpSession session) {
+		
+		String memId = ((MemberVO)session.getAttribute("loginInfo")).getMemId();
+		cartVO.setMemId(memId);
+		cartService.deleteCarts(cartVO);
+		
+		return "redirect:/cart/cartList";
+	}
+	
 
 }

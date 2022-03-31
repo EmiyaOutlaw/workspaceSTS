@@ -11,5 +11,5 @@ public interface StudentService {
 	List<ClassVO> selectClassList();
 	
 	//학생 조회
-	List<StudentVO> selectStuList(ClassVO classVO);
+	List<StudentVO> selectStuList(String classCode);
 }

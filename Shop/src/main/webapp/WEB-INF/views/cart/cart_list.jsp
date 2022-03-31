@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +43,7 @@ row{
 				  <thead>
 				    <tr>
 				      <th scope="col">
-				      	<input type="checkBox" class="form-check-input">
+				      	<input id="check" type="checkBox" class="form-check-input" onclick="checkAll();" checked>
 				      </th>
 				      <th scope="col">No</th>
 				      <th scope="col">상품 이미지</th>
@@ -55,28 +57,30 @@ row{
 				  <tbody>
 				  		<c:choose>
 				  			<c:when test="${not empty cartList}" >
-				  				<c:forEach items="${cartList }" var="item">
+				  				<c:forEach items="${cartList }" var="item" varStatus="status">
 				 					<tr>
 								      <th scope="row">
-								      	<input type="checkBox" class="form-check-input">
+								      	<input type="checkBox" class="form-check-input chk" value="${item.itemCode}" checked>
 								      </th>
-								      <td>1</td>
+								      <td>${status.index + 1 }</td>
 								      <td>
 								      	<img width="80px;" alt="" src="/resources/images/${item.attachedImgName }">
 								      </td>
 								      <td>${item.itemName }</td>
-								      <td>${item.itemPrice }</td>
+								      <td>
+								      	<fmt:formatNumber value="${item.itemPrice }" pattern="\#,###"/>
+								      </td>
 								      <td>
 								      	<div class="row">
 								      		<div class="col-7">
 								      			<input type="number" class="form-control" value="${item.itemCnt }">
 											</div>
 								      		<div class="col-5 d-grid"> <!--d-grid 그만큼 찬다.  -->
-								      			<button type=button class="btn btn-warning" onclick="updateItemCnt(this, '${item.itemCode}');">변경</button>				      		
+								      			<button type=button class="btn btn-warning" onclick="updateItemCnt(this, '${item.itemCode}', ${item.itemPrice });">변경</button>				      		
 								      		</div>
 								      	</div>
 								      </td>
-								      <td>${item.totalPrice }</td>
+								      <td class="totalPriceTd"><fmt:formatNumber value="${item.totalPrice}" pattern="\#,###"/></td>
 								      <td>
 								      	<form action="/cart/deleteCart" method="post" id="deleteCartForm">
 								      		<input type="hidden" name="itemCode" value="${item.itemCode }">
@@ -99,8 +103,12 @@ row{
 		</div>
 		<div class="col-12">
 			<div class="row">
-				<div class="col-1 offset-10 text-end" style="background-color: #ffc300; padding: 6px; border: 1px solid #ffc300; font-style: italic; font-weight: bold; border-top-left-radius: 10px; border-bottom-left-radius: 10px;  ">구매 가격</div>
-				<div class="col-1" style="padding: 6px; border-bottom: 1px solid #ffc300">${totalPrice }</div>
+				<div class="col-1 offset-10 text-end" style="background-color: #ffc300; padding: 6px; border: 1px solid #ffc300; font-style: italic; font-weight: bold; border-top-left-radius: 10px; border-bottom-left-radius: 10px;  ">
+					구매 가격
+				</div>
+				<div class="col-1" style="padding: 6px; border-bottom: 1px solid #ffc300" id="buyPriceDiv">
+					<fmt:formatNumber value="${totalPrice}" pattern="\#,###"/>
+				</div>
 			</div>
 		</div>
 		<div class="col-12">
@@ -108,13 +116,13 @@ row{
 				<div class="col">
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					  <button class="btn btn-primary me-md-2" type="button">선택 구매</button>
-					  <button class="btn btn-primary" type="button">선택 삭제</button>
+					  <button class="btn btn-primary" type="button" onclick="deleteCarts();">선택 삭제</button>
 					</div>				
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=3"></script>
+<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=22"></script>
 </body>
 </html>

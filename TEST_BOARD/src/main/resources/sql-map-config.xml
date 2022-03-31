@@ -8,11 +8,7 @@
 	</settings>
 
 	<mappers>
-		<mapper resource="/mapper/member-Mapper.xml"/>
-		<mapper resource="/mapper/item-Mapper.xml"/>
-		<mapper resource="/mapper/admin-mapper.xml"/>
-		<mapper resource="/mapper/cart-mapper.xml"/>
-		<mapper resource="/mapper/purchase-mapper.xml"/>
+		<mapper resource="/mapper/board-Mapper.xml"/>
 	</mappers>
 </configuration>
 

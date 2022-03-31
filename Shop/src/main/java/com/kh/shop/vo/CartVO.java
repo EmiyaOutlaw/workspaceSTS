@@ -6,8 +6,16 @@ public class CartVO {
 	private String memId;
 	private int itemCnt;
 	private String createDate;
+	private String[] itemCodeArr;
 	
 	
+	
+	public String[] getItemCodeArr() {
+		return itemCodeArr;
+	}
+	public void setItemCodeArr(String[] itemCodeArr) {
+		this.itemCodeArr = itemCodeArr;
+	}
 	@Override
 	public String toString() {
 		return "CartVO [cartNum=" + cartNum + ", itemCode=" + itemCode + ", memId=" + memId + ", itemCnt=" + itemCnt

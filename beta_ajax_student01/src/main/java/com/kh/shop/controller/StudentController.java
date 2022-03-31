@@ -23,18 +23,18 @@ public class StudentController {
 	private StudentService stuService;
 	
 	@GetMapping("/studentList")
-	public String studentList(Model model, ClassVO classVO) {
+	public String studentList(Model model, String classCode) {
 		
 		model.addAttribute("classList", stuService.selectClassList());
-		model.addAttribute("stuList", stuService.selectStuList(classVO));
+		model.addAttribute("stuList", stuService.selectStuList(classCode));
 		return "student_manage";
 	}
 	
 	
 	@ResponseBody// 요걸로 페이지 이동인지 아닌지 구별 할 수 있다. 
 	@PostMapping("/selectStuListAjax")
-	public List<StudentVO> selectStuListAjax(ClassVO classVO) {
-		List<StudentVO> list = stuService.selectStuList(classVO);
+	public List<StudentVO> selectStuListAjax(String classCode) {
+		List<StudentVO> list = stuService.selectStuList(classCode);
 		
 		return list;
 		
