@@ -12,3 +12,21 @@ var a = {
 
 a.name;
 a.age;
+
+
+------javascript 값 가져오는 방법
+
+document.getElementById()
+
+document.getElementsByClassName()
+
+document.querySelector
+
+document.querySelectorAll
+
+innerText 텍스트만 가져온다.
+
+ 예를 들어서. <div style="color: red;">A</div>를 하면 테스트 그대로 가져온다. 
+반면 inner HTML을 하면 빨간색 A를 가져온다. 
+
+innerHTML

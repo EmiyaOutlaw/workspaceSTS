@@ -1,14 +1,12 @@
 package com.kh.shop.service;
 
-import java.util.List;
 
-import com.kh.shop.vo.ImgVO;
-import com.kh.shop.vo.ItemVO;
-import com.kh.shop.vo.MenuVO;
-import com.kh.shop.vo.SubMenuVO;
+import com.kh.shop.vo.BuyVO;
+import com.kh.shop.vo.CartVO;
 
 public interface BuyService {
 	
 	int selectNextBuyNum();
 
+	void insertBuys(BuyVO buyVO, CartVO cartVO);
 }

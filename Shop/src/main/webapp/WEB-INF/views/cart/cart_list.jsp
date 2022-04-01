@@ -123,6 +123,6 @@ row{
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=30"></script>
+<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=31"></script>
 </body>
 </html>

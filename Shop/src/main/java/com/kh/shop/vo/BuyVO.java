@@ -1,5 +1,7 @@
 package com.kh.shop.vo;
 
+import java.util.List;
+
 public class BuyVO {
 	private int buyNum;
 	private String memId;
@@ -8,6 +10,18 @@ public class BuyVO {
 	private int buyPrice;
 	private String buyDate;
 	private String orderNum;
+	private List<BuyVO> buyList;
+	
+	
+	
+	
+	
+	public List<BuyVO> getBuyList() {
+		return buyList;
+	}
+	public void setBuyList(List<BuyVO> buyList) {
+		this.buyList = buyList;
+	}
 	public int getBuyNum() {
 		return buyNum;
 	}
