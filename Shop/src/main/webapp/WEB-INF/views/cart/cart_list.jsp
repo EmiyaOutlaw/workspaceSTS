@@ -115,7 +115,7 @@ row{
 			<div class="row" style="margin-top: 20px;">
 				<div class="col">
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					  <button class="btn btn-primary me-md-2" type="button">선택 구매</button>
+					  <button class="btn btn-primary me-md-2" type="button" onclick="buy();">선택 구매</button>
 					  <button class="btn btn-primary" type="button" onclick="deleteCarts();">선택 삭제</button>
 					</div>				
 				</div>
@@ -123,6 +123,6 @@ row{
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=22"></script>
+<script type="text/javascript" src="/resources/js/cart/cart_list.js?ver=30"></script>
 </body>
 </html>

@@ -7,7 +7,8 @@ import com.kh.shop.vo.ItemVO;
 import com.kh.shop.vo.MenuVO;
 import com.kh.shop.vo.SubMenuVO;
 
-public interface purchaseService {
+public interface BuyService {
 	
+	int selectNextBuyNum();
 
 }

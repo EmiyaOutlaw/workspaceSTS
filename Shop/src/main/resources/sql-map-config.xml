@@ -12,7 +12,7 @@
 		<mapper resource="/mapper/item-Mapper.xml"/>
 		<mapper resource="/mapper/admin-mapper.xml"/>
 		<mapper resource="/mapper/cart-mapper.xml"/>
-		<mapper resource="/mapper/purchase-mapper.xml"/>
+		<mapper resource="/mapper/buy-mapper.xml"/>
 	</mappers>
 </configuration>
 

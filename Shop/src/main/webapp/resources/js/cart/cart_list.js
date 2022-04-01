@@ -113,3 +113,45 @@ function deleteCarts(){
 		location.href='/cart/deleteCarts?itemCodeArr=' + itemCodeArr;
 		
 }
+
+
+//선택 구매
+function buy(){
+	
+	//평상시 하는 방법 
+	//필요한 데이터를 가져온다.(상품코드, 수량)
+	//체크한 상품의 상품코드
+	var checkboxes = document.querySelectorAll('.chk:checked'); 
+	
+	var objArr = [];
+		
+	for(var i = 0; i <checkboxes.length; i ++){
+		var obj = new Object();
+		
+		obj.itemCode = checkboxes[i].value; //itemCode는 check박스의 value값에 들어가게 세팅을 이미 해 놓아서 이렇게 쓰임. 
+		obj.itemCnt = checkboxes[i].closest('tr').querySelector('input[type="number"]').value
+		
+		objArr[i] = obj;	
+	}
+	
+	
+	//JSON.stringify(objArr);
+	
+	$.ajax({
+		url: '/buy/insertBuys', //요청경로
+		type: 'post',
+		data: {'data':JSON.stringify(objArr)}, //필요한 데이터 '데이터이름':값
+		success: function(result) {
+			//ajax 실행 성공 후 실행할 코드 작성
+			alert('성공');
+		},
+		error: function() {
+			//ajax 실행 실패 시 실행되는 구간
+			alert('실패');
+		}
+	});
+	
+}
+
+//json(javascrip Object notation) vs javascript Object
+

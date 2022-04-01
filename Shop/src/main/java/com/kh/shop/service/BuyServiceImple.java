@@ -6,12 +6,19 @@ import org.springframework.stereotype.Service;
 
 import com.kh.shop.vo.MemberVO;
 
-@Service("purcahseService")
-public class purchaseServiceImple implements purchaseService{
+@Service("buyService")
+public class BuyServiceImple implements BuyService{
 
 	
 	@Autowired
 	private SqlSessionTemplate sqlsession;
+
+	
+	@Override
+	public int selectNextBuyNum() {
+	
+		return sqlsession.selectOne("buyMapper.selectNextBuyNum");
+	}
 
 	
 }

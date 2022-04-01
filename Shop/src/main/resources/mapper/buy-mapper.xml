@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="buyMapper">
+	<insert id="">
+		INSET INTO SHOP_BY (
+			BUY_NUM
+			, MEM_ID
+			, ITEM_CODE
+			, ITEM_CNT
+			, BUY_PRICE
+			, ORDER_NUM
+		)
+		SELECT
+			1
+			, 'ADMIN'
+			, 'ITEM_001'
+			, 5
+			, 5000
+			, '20220401121321_admin'
+		FROM DUAL
+		UNION ALL
+		SELECT
+			1
+			, 'ADMIN'
+			, 'ITEM_001'
+			, 5
+			, 5000
+			, '20220401121321_admin'
+		FROM DUAL	
+	</insert>
+	
+	<select id="selectNextBuyNum" resultType="int">
+		SELECT NVL(MAX(BUY_NUM), 0) +1
+		FROM SHOP_BUY
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
