@@ -1,5 +1,7 @@
 package com.kh.board.controller;
 
+import java.lang.reflect.Member;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -28,17 +30,31 @@ public class BoardController {
 		return "board_list";
 	}
 
+	
+	
 	@PostMapping("/boardWrite")
 	public String boardWrite() {
 		
 		return "board_write";
 	}
 	
+	
+	
 	@PostMapping("/boardupload")
 	public String boardWrited(BoardVO boardVO) {
 		boardService.boardupload(boardVO);
 		return "redirect:boardList";
 	}
+	
+	
+	@GetMapping("/boardDetail")
+	public String boardDetail(int boardNum, Model model) {
+		
+		model.addAttribute("boardDetail", boardService.boardDetail(boardNum));
+		return "board_detail";
+	}
+	
+	
 }
 
 

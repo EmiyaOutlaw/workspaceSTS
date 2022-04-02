@@ -20,8 +20,7 @@
  	margin: 0 auto;
  	margin-top: 30px;
  	width: 100px;
- 	background-color: aqua;	
- }
+}
  textarea{
  	resize: none;
  }

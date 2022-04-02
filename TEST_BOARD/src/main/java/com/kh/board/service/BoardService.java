@@ -11,4 +11,8 @@ public interface BoardService {
 	
 	//글 등록
 	void boardupload(BoardVO boardVO);
+	
+	//글 상세조회
+	
+	BoardVO boardDetail(int boardNum);
 }

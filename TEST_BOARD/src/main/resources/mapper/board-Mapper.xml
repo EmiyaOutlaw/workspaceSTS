@@ -33,6 +33,15 @@
 		)
 	</insert>
 	
+	<select id="boardDetail" resultMap="board">
+		SELECT BOARD_NUM
+			, BOARD_TITLE
+			, BOARD_CONTENT
+			, BOARD_WRITER
+		FROM TEST_BOARD
+		WHERE BOARD_NUM = #{boardNum}
+	</select>
+	
 </mapper>
 
 

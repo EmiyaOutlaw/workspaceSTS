@@ -24,4 +24,9 @@ public class BoardServiceImpl implements BoardService{
 	public void boardupload(BoardVO boardVO) {
 		sqlSession.insert("boardMapper.insertBoard", boardVO);
 	}
+
+	@Override
+	public BoardVO boardDetail(int boardNum) {
+		return sqlSession.selectOne("boardMapper.boardDetail", boardNum);
+	}
 }

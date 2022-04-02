@@ -43,7 +43,7 @@
 			<c:forEach items="${boardList }" var="boardList">
 				<tr>
 					<td style="text-align: center">${boardList.boardNum }</td>
-					<td>${boardList.boardTitle }</td>
+					<td><a href="/board/boardDetail?boardNum=${boardList.boardNum }">${boardList.boardTitle }</a></td>
 					<td>${boardList.boardWriter }</td>
 					<td>${boardList.createDate }</td>
 				</tr>
@@ -56,5 +56,7 @@
 		</div>
 	</form>
 </div>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script><!--jquery 를 사용할 수 있게 하는 것  -->
+<script type="text/javascript" src="/resources/js/board_list.js?ver=0"></script>
 </body>
 </html>
