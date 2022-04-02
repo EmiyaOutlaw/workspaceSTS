@@ -3,11 +3,11 @@
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="boardMapper">
 	<resultMap type="com.kh.board.vo.BoardVO" id="board">
-		<id column="BOARD_NUM" property="boardNum"/>		
-		<result column="BOARD_TITLE" property="boardTitle"/>
-		<result column="BOARD_CONTENT" property="boardContent"/>
-		<result column="BOARD_WRITER" property="boardWriter"/>
-		<result column="CREATE_DATE" property="createDate"/>
+		<id column="BOARD_NUM" 			property="boardNum"/>		
+		<result column="BOARD_TITLE"	property="boardTitle"/>
+		<result column="BOARD_CONTENT" 	property="boardContent"/>
+		<result column="BOARD_WRITER" 	property="boardWriter"/>
+		<result column="CREATE_DATE" 	property="createDate"/>
 	
 	</resultMap>
 	
@@ -18,6 +18,20 @@
 			, CREATE_DATE
 		FROM TEST_BOARD
 	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO TEST_BOARD (
+			BOARD_NUM
+			, BOARD_TITLE
+			, BOARD_CONTENT
+			, BOARD_WRITER
+		) VALUES (
+			(SELECT NVL(MAX(BOARD_NUM),0) + 1 FROM TEST_BOARD)
+			, #{boardTitle}
+			, #{boardContent}
+			, #{boardWriter}
+		)
+	</insert>
 	
 </mapper>
 
