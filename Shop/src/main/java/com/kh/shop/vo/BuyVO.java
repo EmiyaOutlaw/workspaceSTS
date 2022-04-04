@@ -11,11 +11,25 @@ public class BuyVO {
 	private String buyDate;
 	private String orderNum;
 	private List<BuyVO> buyList;
+	private MemberVO memberVO;
+	private ItemVO itemVO;
 	
 	
 	
 	
 	
+	public ItemVO getItemVO() {
+		return itemVO;
+	}
+	public void setItemVO(ItemVO itemVO) {
+		this.itemVO = itemVO;
+	}
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
 	public List<BuyVO> getBuyList() {
 		return buyList;
 	}

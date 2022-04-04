@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
 import com.kh.shop.vo.MenuVO;
@@ -52,4 +53,17 @@ public class adminServiceImpl implements adminService {
 		
 		return sqlSession.selectOne("adminMapper.selectNextItemCode");
 	}
+
+	@Override
+	public List<BuyVO> selectBuyList() {
+		return sqlSession.selectList("adminMapper.selectBuyList");
+	}
+
+	@Override
+	public List<BuyVO> selectBuyListDetail(String orderNum) {
+
+		return sqlSession.selectList("adminMapper.selectBuyListDetail", orderNum);
+	}
+	
+	
 }

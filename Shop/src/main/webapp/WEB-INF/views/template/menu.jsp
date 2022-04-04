@@ -80,24 +80,23 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-body">
-		     	 <form action="/member/login" method="post">
-		      
+		     <form action="/member/login" method="post">
+	 		<div class="row">
+	 			<div class="mb-3">
+	  				<input class="form-control" type="text" placeholder="Input ID here" name="memId" required>	
+	 			</div>
+	 		</div>
+	 		<div class="row">
+	 			<div class="mb-3">
+	  				<input class="form-control" type="password" placeholder="Input Password here" name="memPw" required>				
+	 			</div>		
+	 		</div>
 		 		<div class="row">
-		 			<div class="mb-3">
-		  				<input class="form-control" type="text" placeholder="Input ID here" name="memId" required>	
-		 			</div>
+		 			<div class="col d-grid gap-2 ">
+						<button type="submit" class="btn btn-secondary">Login</button>
+					</div>		
 		 		</div>
-		 		<div class="row">
-		 			<div class="mb-3">
-		  				<input class="form-control" type="password" placeholder="Input Password here" name="memPw" required>				
-		 			</div>		
-		 		</div>
-			 		<div class="row">
-			 			<div class="col d-grid gap-2 ">
-							<button type="submit" class="btn btn-secondary">Login</button>
-						</div>		
-			 		</div>
-		 		</form>   
+	 		</form>   
 	      </div>
 	    </div>
 	  </div>

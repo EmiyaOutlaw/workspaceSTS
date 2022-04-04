@@ -287,8 +287,14 @@ public class AdminController {
 		model.addAttribute("selectedMenu", menuCode);
 		model.addAttribute("selectedSubMenu", subMenuCode);
 		
+		model.addAttribute("buyList", adminService.selectBuyList());
+		
 		return "admin/manage_buy_list";
 	}
+	
+	
+	
+	
 	
 	//구매 목록 검색
 	@PostMapping("/searchBuyList")
@@ -305,6 +311,8 @@ public class AdminController {
 	
 		model.addAttribute("selectedMenu", menuCode);
 		model.addAttribute("selectedSubMenu", subMenuCode);
+		
+		
 		
 		return "admin/search_buy_list";
 	}

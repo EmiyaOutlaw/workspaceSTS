@@ -15,8 +15,25 @@
 		<result column="MENU_CODE" property="menuCode"/>
 		<result column="MENU_URI" property="menuUri"/>
 	</resultMap>
+	
+	
+	<resultMap type="com.kh.shop.vo.BuyVO" id="buy">
+		<id column="BUY_NUM" 		property="buyNum"/>
+		<result column="MEM_ID"	 	property="memId"/>
+		<result column="ITEM_CODE" 	property="itemCode"/>
+		<result column="ITEM_CNT" 	property="itemCnt"/>
+		<result column="BUY_PRICE" 	property="buyPrice"/>
+		<result column="BUY_DATE" 	property="buyDate"/>
+		<result column="ORDER_NUM" 	property="orderNum"/>
+		<association property="memberVO" resultMap="memberMapper.member"/>
+		<association property="itemVO" resultMap="itemMapper.item2"/>
+	</resultMap>
+	
+	
+	
 
-
+	
+	
 
 	<select id="selectMenuList" resultMap="menu">
 		SELECT MENU_CODE
@@ -69,9 +86,6 @@
 				, #{img.itemCode}
 			FROM DUAL
 		</foreach>
-		
-		
-		
 	</insert>
 	
 	<select id="selectNextImgCode" resultType="int">
@@ -85,7 +99,7 @@
 	</select>
 	
 	
-	<select id="selectBuyList" resultMap="">
+	<select id="selectBuyList" resultMap="buy">
 	SELECT DISTINCT ORDER_NUM
 		, MEM_ID
 		, (SELECT MEM_NAME
@@ -93,6 +107,22 @@
 			WHERE MEM_ID = SHOP_BUY.MEM_ID) AS MEM_NAME
 		, TO_CHAR(BUY_DATE, 'YYYY-MM-DD HH24:MI') AS BUY_DATE
 	FROM SHOP_BUY
+	ORDER BY BUY_DATE DESC
+	</select>
+	
+	<select id="selectBuyListDetail" resultMap="buy">
+	SELECT IMG.ATTACHED_IMG_NAME
+	    , ITEM.ITEM_NAME
+	    , BUY.ITEM_CNT
+	    , BUY.BUY_PRICE
+	    , BUY.MEM_ID
+	    , MEMBER.MEM_NAME
+	FROM SHOP_BUY BUY, SHOP_ITEM ITEM, ITEM_IMAGE IMG, SHOP_MEMBER MEMBER
+	WHERE BUY.ITEM_CODE = ITEM.ITEM_CODE
+	AND BUY.ITEM_CODE = IMG.ITEM_CODE
+	AND BUY.MEM_ID = MEMBER.MEM_ID
+	AND IS_MAIN = 'Y'
+	AND ORDER_NUM = #{orderNum}
 	</select>
 	
 </mapper>
