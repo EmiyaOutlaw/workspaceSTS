@@ -11,7 +11,7 @@ public interface adminService {
 	
 	
 	//상품 등록
-	void insertItem(ItemVO itemVO);
+	void insertItem(ItemVO itemVO, ImgVO imgVO);
 	
 	//관리자 메뉴 목록 조회
 	

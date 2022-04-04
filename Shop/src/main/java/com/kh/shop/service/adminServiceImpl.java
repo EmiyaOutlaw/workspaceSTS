@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
@@ -17,10 +18,12 @@ public class adminServiceImpl implements adminService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	
 	@Override
-	public void insertItem(ItemVO itemVO) {	
+	@Transactional(rollbackFor = Exception.class)
+	public void insertItem(ItemVO itemVO, ImgVO imgVO) {	
 		sqlSession.insert("adminMapper.insertItem", itemVO);
-		
+		sqlSession.insert("adminMapper.insertImages", imgVO);		
 	}
 
 	@Override
@@ -36,7 +39,6 @@ public class adminServiceImpl implements adminService {
 
 	@Override
 	public void insertImages(ImgVO imgVO) {
-		sqlSession.insert("adminMapper.insertImages", imgVO);
 	}
 
 	@Override

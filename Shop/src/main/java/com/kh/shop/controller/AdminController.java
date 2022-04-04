@@ -47,7 +47,7 @@ public class AdminController {
 			subMenuCode = "SUB_MENU_001";
 			
 		}
-		
+	
 		model.addAttribute("selectedSubMenu", subMenuCode); //SUB_MENU_001 OR SUB_MENU_002
 		
 		//현재 menuCode 전송 
@@ -233,11 +233,11 @@ public class AdminController {
 		
 		//상품 정보 INSERT (SHOP_ITEM)
 		itemVO.setItemCode(nextItemCode);
-		adminService.insertItem(itemVO);
+		imgVO.setImgList(imgList);		
+		adminService.insertItem(itemVO, imgVO);
 		
 		//상품 이미지 정보 INSERT(ITEM_IMAGE)
-		imgVO.setImgList(imgList);
-		adminService.insertImages(imgVO);
+		//adminService.insertImages(imgVO);
 		
 		
 		
@@ -269,4 +269,44 @@ public class AdminController {
 		
 		return "admin/member_list";
 	}
+	
+	//구매 목록 관리
+	@GetMapping("/manageBuyList")
+	
+	public String selectBuyList(Model model, String menuCode, String subMenuCode) {
+		
+		//카테고리 목록 조회
+		model.addAttribute("categoryList", itemService.selectCategoryList());
+	
+		//관리자 메뉴 목록 조회 
+		model.addAttribute("menuList", adminService.selectMenuLIst());
+				
+		//상품 관리 메뉴의 하위 메뉴 목록 조회
+		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
+	
+		model.addAttribute("selectedMenu", menuCode);
+		model.addAttribute("selectedSubMenu", subMenuCode);
+		
+		return "admin/manage_buy_list";
+	}
+	
+	//구매 목록 검색
+	@PostMapping("/searchBuyList")
+	public String searchBuyList(Model model, String menuCode, String subMenuCode) {
+		
+		//카테고리 목록 조회
+		model.addAttribute("categoryList", itemService.selectCategoryList());
+	
+		//관리자 메뉴 목록 조회 
+		model.addAttribute("menuList", adminService.selectMenuLIst());
+				
+		//상품 관리 메뉴의 하위 메뉴 목록 조회
+		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
+	
+		model.addAttribute("selectedMenu", menuCode);
+		model.addAttribute("selectedSubMenu", subMenuCode);
+		
+		return "admin/search_buy_list";
+	}
+	
 }
