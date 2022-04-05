@@ -14,11 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.shop.service.adminService;
 import com.kh.shop.service.itemService;
+import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
 
@@ -293,28 +295,11 @@ public class AdminController {
 	}
 	
 	
-	
-	
-	
-	//구매 목록 검색
-	@PostMapping("/searchBuyList")
-	public String searchBuyList(Model model, String menuCode, String subMenuCode) {
+	@ResponseBody
+	@PostMapping("/selectBuyListDetail")
+	public List<BuyVO> selectBuyListDetail(String orderNum) {
+		return adminService.selectBuyListDetail(orderNum);
 		
-		//카테고리 목록 조회
-		model.addAttribute("categoryList", itemService.selectCategoryList());
-	
-		//관리자 메뉴 목록 조회 
-		model.addAttribute("menuList", adminService.selectMenuLIst());
-				
-		//상품 관리 메뉴의 하위 메뉴 목록 조회
-		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
-	
-		model.addAttribute("selectedMenu", menuCode);
-		model.addAttribute("selectedSubMenu", subMenuCode);
-		
-		
-		
-		return "admin/search_buy_list";
 	}
 	
 }

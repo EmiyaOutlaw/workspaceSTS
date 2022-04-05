@@ -43,10 +43,13 @@ public class MemberVO {
 		this.memName = memName;
 	}
 	public String getMemTell() {
-		return memTells[0] + "-" + memTells[1] + "-" + memTells[2];
+		return memTell;
 	}
 	public void setMemTell(String memTell) {
 		this.memTell = memTell;
+	}
+	public void setMemTell() {
+		this.memTell = memTells[0] + "-" + memTells[1] + "-" + memTells[2];
 	}
 	public String getMemEmail() {
 		return memEmail;
@@ -55,10 +58,13 @@ public class MemberVO {
 		this.memEmail = memEmail;
 	}
 	public String getMemAddr() {
-		return memAddrs[0] + " " + memAddrs[1] ;
+		return memAddr ;
 	}
 	public void setMemAddr(String memAddr) {
 		this.memAddr = memAddr;
+	}
+	public void setMemAddr() {
+		this.memAddr = memAddrs[0] + "-" + memAddrs[1] ;
 	}
 	public String getIsAdmin() {
 		return isAdmin;

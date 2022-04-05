@@ -82,11 +82,11 @@ textarea{
                   <th scope="col">구매일시</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody>										<!-- 문자열은 홀따움표로 감싼다  -->
               	<c:forEach items="${buyList}" var="buyInfo" varStatus="status">
 	                 <tr>
 	                  <td>${status.index + 1}</td>
-	                  <td><span style="cursor: pointer" onclick="selectBuyListDetail();">
+	                  <td><span style="cursor: pointer" onclick="selectBuyListDetail('${buyInfo.orderNum }');">
 	                  	${buyInfo.orderNum }
 	                  </span></td>   
 	                  <td>${buyInfo.memId }(${buyInfo.memberVO.memName })</td>
@@ -110,59 +110,13 @@ textarea{
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      	<div class="row">
-            <div class="col text-center">
-               <table class="table table-striped table-hover align-middle">
-              <colgroup>
-                 <col width="10%">
-                 <col width="15%">
-                 <col width="*">
-                 <col width="10%">
-                 <col width="15%">
-                 <col width="15%%">
-              </colgroup>
-              <thead>
-                <tr>
-                  <th scope="col">No</th>
-                  <th scope="col">상품이미지</th>
-                  <th scope="col">상품명</th>
-                  <th scope="col">수량</th>
-                  <th scope="col">구매가격</th>
-                  <th scope="col">구매자</th>
-                </tr>
-              </thead>
-              <tbody>
-                 <tr>
-                  <td>1</td>
-                  <td>
-                     <img width="50px;" alt="" src="/resources/images/1648097539159_마인_메인.jpg">
-                  </td>
-                  <td>테스트상품1</td>
-                  <td>10</td>
-                  <td>\10,000</td>
-                  <td>테스터</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                     <img width="60px;" alt="" src="/resources/images/1648128286894_엑셀실무_메인.pg.jpg">
-                  </td>
-                  <td>테스트상품2</td>
-                  <td>5</td>
-                  <td>\20,000</td>
-                  <td>테스터</td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
+      	
          </div>
       </div>
     </div>
   </div>
-</div>
-
 
 </body>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/resources/js/admin/manage_buy_list.js?ver=31"type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script><!--jquery 를 사용할 수 있게 하는 것  -->
+<script type="text/javascript" src="/resources/js/admin/manage_buy_list.js?ver=11"></script>
 </html>
