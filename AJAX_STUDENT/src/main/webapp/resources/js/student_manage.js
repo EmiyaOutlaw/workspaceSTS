@@ -136,3 +136,30 @@ function updateScore(stuNum){
 
 }
 
+
+function searchBuiedLists(){
+	
+	var orderNum = document.getElementById('manage_buy_list_orderNum');
+	var memId = document.getElementById('manage_buy_list_memId');
+	
+	$.ajax({
+		url: '/admin/searchBuiedLists', //요청경로
+		type: 'post',
+		data: {}, //필요한 데이터 '데이터이름':값
+		success: function(result) {
+
+
+			alert('성공');
+			
+			
+			
+			
+		},
+		error: function() {
+			//ajax 실행 실패 시 실행되는 구간
+			alert('실패');
+		}
+	});
+	
+}
+

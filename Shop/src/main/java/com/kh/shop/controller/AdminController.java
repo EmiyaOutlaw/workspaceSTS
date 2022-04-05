@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import javax.swing.text.Document;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.shop.service.adminService;
 import com.kh.shop.service.itemService;
+import com.kh.shop.util.MyDateUtil;
 import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
@@ -291,6 +292,16 @@ public class AdminController {
 		
 		model.addAttribute("buyList", adminService.selectBuyList());
 		
+		//이달의 1일
+		String firstDate = MyDateUtil.getFirstDateOfNowMonth();
+		
+		
+		//오늘날짜를 구함
+		String nowDate = MyDateUtil.getNowDatToString();
+		
+		model.addAttribute("firstDate", firstDate);
+		model.addAttribute("nowDate", nowDate);
+		
 		return "admin/manage_buy_list";
 	}
 	
@@ -299,6 +310,17 @@ public class AdminController {
 	@PostMapping("/selectBuyListDetail")
 	public List<BuyVO> selectBuyListDetail(String orderNum) {
 		return adminService.selectBuyListDetail(orderNum);
+		
+	}
+	
+	
+	//검색 기능 
+	
+	@ResponseBody
+	@PostMapping("/searchBuiedLists")
+	public void searchBuiedLists() {
+		
+		
 		
 	}
 	

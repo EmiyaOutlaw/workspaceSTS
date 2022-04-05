@@ -36,27 +36,27 @@ textarea{
                  <col width="15%">
               </colgroup>
               <tbody>
-                 <tr>
-                  <td class="searchTitle">주문번호</td>
-                  <td><input type="text" class="form-control"></td>   
-                  <td class="searchTitle">구매자</td>
-                  <td><input type="text" class="form-control"></td>
-                  <td rowspan="2">
-                  <button type="button" class="btn btn-secondary w-100 h-100">검 색</button>
-                  </td>
-                </tr>
+	                <tr>
+	                  <td class="searchTitle" id="manage_buy_list_orderNum">주문번호</td>
+	                  <td><input type="text" class="form-control"></td>   
+	                  <td class="searchTitle" id="manage_buy_list_memId">구매자</td>
+	                  <td><input type="text" class="form-control"></td>
+	                  <td rowspan="2">
+	                  <button type="button" class="btn btn-secondary w-100 h-100" onclick="searchBuiedLists();">검 색</button>
+	                  </td>
+	                </tr>
                 <tr>
                   <td class="searchTitle">구매일시</td>
                   <td colspan="3">
                   <div class="row">
                      <div class="col-5">
-                     <input type="date" class="form-control">
+                     <input type="date" class="form-control" value="${firstDate }">
                      </div>
                      <div class="col-1 text-center align-self-center">
                         ~
                      </div>
                      <div class="col-5">
-                        <input type="date" class="form-control">
+                        <input type="date" class="form-control" value="${nowDate }">
                      </div>
                   </div>
                   </td>   

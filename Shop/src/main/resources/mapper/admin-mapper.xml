@@ -101,13 +101,21 @@
 	
 	<select id="selectBuyList" resultMap="buy">
 	SELECT DISTINCT ORDER_NUM
-		, MEM_ID
-		, (SELECT MEM_NAME
-			FROM SHOP_MEMBER
-			WHERE MEM_ID = SHOP_BUY.MEM_ID) AS MEM_NAME
-		, TO_CHAR(BUY_DATE, 'YYYY-MM-DD HH24:MI') AS BUY_DATE
+	    , MEM_ID
+	    , (SELECT MEM_NAME
+	    FROM SHOP_MEMBER
+	    WHERE MEM_ID = SHOP_BUY.MEM_ID) AS MEM_NAME
+	    , TO_CHAR(BUY_DATE, 'YYYY-MM-DD HH24:MI') AS BUY_DATE
 	FROM SHOP_BUY
-	ORDER BY BUY_DATE DESC
+	WHERE 1 = 1 
+	AND UPPER(ORDER_NUM) LIKE UPPER('%' || #{orderNum} || '%')
+	AND (UPPER(MEM_ID) LIKE UPPER('%' || #{memId} ||'%') 
+	        OR 
+	        UPPER((SELECT MEM_NAME
+	            FROM SHOP_MEMBER
+	            WHERE MEM_ID = SHOP_BUY.MEM_ID)) LIKE UPPER('%' || #{memId} || '%'))
+		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') &gt;= TO_DATE('20220401') AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') &lt;= TO_DATE('20220405')
+		ORDER BY BUY_DATE DESC
 	</select>
 	
 	<select id="selectBuyListDetail" resultMap="buy">
