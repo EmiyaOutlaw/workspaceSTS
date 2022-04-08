@@ -7,42 +7,34 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.shop.service.itemService;
+import com.kh.shop.service.ItemService;
 import com.kh.shop.vo.CategoryVO;
 import com.kh.shop.vo.ItemVO;
 
 @Controller
 @RequestMapping("/item")
-public class itemController {
-	
+public class ItemController {
 	@Resource(name = "itemService")
-	private itemService itemService;
+	private ItemService itemService;
 	
-	
-	
-	//전체상품 목록 페이지 
+	//전체상품 목록 페이지
 	@GetMapping("/itemList")
 	public String itemList(Model model, String cateCode) {
-		//category 목록
+		//카테고리 목록
 		model.addAttribute("categoryList", itemService.selectCategoryList());
-		
-		
 		//메뉴에서 클릭한 카테고리의 코드값
 		model.addAttribute("selectedCategory", cateCode);
 		
-		//상품 목록 조회 
+		//상품 목록 조회
 		model.addAttribute("itemList", itemService.selectItemList());
 		
-		
 		return "item/item_list";
-		
 	}
 	
+	//상품 상세보기 페이지
 	@GetMapping("/itemDetail")
 	public String itemDetail(String itemCode, Model model) {
-		
-		
-		ItemVO result = itemService.selecteItemDetail(itemCode);
+		ItemVO result = itemService.selectItemDetail(itemCode);
 		System.out.println(result);
 		
 		model.addAttribute("item", result);
@@ -50,8 +42,16 @@ public class itemController {
 		return "item/item_detail";
 	}
 	
-
-	
-	
 	
 }
+
+
+
+
+
+
+
+
+
+
+

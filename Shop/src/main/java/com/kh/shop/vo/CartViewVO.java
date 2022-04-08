@@ -1,6 +1,5 @@
 package com.kh.shop.vo;
 
-
 public class CartViewVO {
 	private int cartNum;
 	private String itemCode;
@@ -11,7 +10,6 @@ public class CartViewVO {
 	private String createDate;
 	private String memId;
 	private String attachedImgName;
-
 	
 	public int getCartNum() {
 		return cartNum;
@@ -67,8 +65,6 @@ public class CartViewVO {
 	public void setAttachedImgName(String attachedImgName) {
 		this.attachedImgName = attachedImgName;
 	}
-	
-	
 	
 	
 }

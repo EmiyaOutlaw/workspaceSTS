@@ -10,14 +10,6 @@ public class ImgVO {
 	private String itemCode;
 	private List<ImgVO> imgList;
 	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "ImgVO [imgCode=" + imgCode + ", originImgName=" + originImgName + ", attachedImgName=" + attachedImgName
-				+ ", isMain=" + isMain + ", itemCode=" + itemCode + ", imgList=" + imgList + "]";
-	}
 	public List<ImgVO> getImgList() {
 		return imgList;
 	}
@@ -54,6 +46,18 @@ public class ImgVO {
 	public void setItemCode(String itemCode) {
 		this.itemCode = itemCode;
 	}
+	@Override
+	public String toString() {
+		return "ImgVO [imgCode=" + imgCode + ", originImgName=" + originImgName + ", attachedImgName=" + attachedImgName
+				+ ", isMain=" + isMain + ", itemCode=" + itemCode + ", imgList=" + imgList + "]";
+	}
 	
-
+	
 }
+
+
+
+
+
+
+

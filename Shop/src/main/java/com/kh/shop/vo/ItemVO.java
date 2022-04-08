@@ -12,21 +12,17 @@ public class ItemVO {
 	private String attachedImgName;
 	private List<ImgVO> imgList;
 	
-	
-	
-	
-	@Override
-	public String toString() {
-		return "ItemVO [itemCode=" + itemCode + ", itemName=" + itemName + ", itemPrice=" + itemPrice + ", itemDetail="
-				+ itemDetail + ", itemStock=" + itemStock + ", cateCode=" + cateCode + ", attachedImgName="
-				+ attachedImgName + ", imgList=" + imgList + "]";
-	}
-	
 	public List<ImgVO> getImgList() {
 		return imgList;
 	}
 	public void setImgList(List<ImgVO> imgList) {
 		this.imgList = imgList;
+	}
+	public String getAttachedImgName() {
+		return attachedImgName;
+	}
+	public void setAttachedImgName(String attachedImgName) {
+		this.attachedImgName = attachedImgName;
 	}
 	public String getItemCode() {
 		return itemCode;
@@ -64,14 +60,22 @@ public class ItemVO {
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
 	}
-	public String getAttachedImgName() {
-		return attachedImgName;
+	@Override
+	public String toString() {
+		return "ItemVO [itemCode=" + itemCode + ", itemName=" + itemName + ", itemPrice=" + itemPrice + ", itemDetail="
+				+ itemDetail + ", itemStock=" + itemStock + ", cateCode=" + cateCode + ", attachedImgName="
+				+ attachedImgName + ", imgList=" + imgList + "]";
 	}
-	public void setAttachedImgName(String attachedImgName) {
-		this.attachedImgName = attachedImgName;
-	}
 	
 	
-	
-
 }
+
+
+
+
+
+
+
+
+
+

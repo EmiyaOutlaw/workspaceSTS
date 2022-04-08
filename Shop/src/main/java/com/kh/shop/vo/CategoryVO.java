@@ -4,7 +4,6 @@ public class CategoryVO {
 	private String cateCode;
 	private String cateName;
 	
-	
 	public String getCateCode() {
 		return cateCode;
 	}

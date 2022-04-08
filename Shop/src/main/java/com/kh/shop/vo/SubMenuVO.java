@@ -1,14 +1,10 @@
 package com.kh.shop.vo;
 
 public class SubMenuVO {
-
 	private String subMenuCode;
 	private String subMenuName;
 	private String menuCode;
 	private String menuUri;
-	
-	
-	
 	
 	public String getMenuUri() {
 		return menuUri;

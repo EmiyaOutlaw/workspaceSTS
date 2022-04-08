@@ -10,9 +10,9 @@
 	<mappers>
 		<mapper resource="/mapper/member-Mapper.xml"/>
 		<mapper resource="/mapper/item-Mapper.xml"/>
-		<mapper resource="/mapper/admin-mapper.xml"/>
-		<mapper resource="/mapper/cart-mapper.xml"/>
-		<mapper resource="/mapper/buy-mapper.xml"/>
+		<mapper resource="/mapper/admin-Mapper.xml"/>
+		<mapper resource="/mapper/cart-Mapper.xml"/>
+		<mapper resource="/mapper/buy-Mapper.xml"/>
 	</mappers>
 </configuration>
 

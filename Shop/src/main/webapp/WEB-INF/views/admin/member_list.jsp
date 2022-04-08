@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-회원 관리 페이지라네.
+회원 목록 페이지입니다.
 </body>
 </html>
+
+
+
+
+
+
+
+

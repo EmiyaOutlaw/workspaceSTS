@@ -3,11 +3,11 @@
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="cartMapper">
 	<resultMap type="com.kh.shop.vo.CartVO" id="cart">
-		<id column="CART_NUM" 		property="cartNum"/>
-		<result column="ITEM_CODE" 	property="itemCode"/>
-		<result column="MEM_ID" 	property="memId"/>
-		<result column="ITEM_CNT" 	property="itemCnt"/>
-		<result column="CREATE_DATE" property="createDate"/>
+		<id column="CART_NUM" 			property="cartNum"/>
+		<result column="ITEM_CODE" 		property="itemCode"/>
+		<result column="MEM_ID" 		property="memId"/>
+		<result column="ITEM_CNT" 		property="itemCnt"/>
+		<result column="CREATE_DATE" 	property="createDate"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.shop.vo.CartViewVO" id="cartView">
@@ -19,34 +19,33 @@
 		<result column="ITEM_CNT" 			property="itemCnt"/>
 		<result column="CREATE_DATE" 		property="createDate"/>
 		<result column="MEM_ID" 			property="memId"/>
-		<result column="ATTACHED_IMG_NAME"  property="attachedImgName"/>
-	
+		<result column="ATTACHED_IMG_NAME" 	property="attachedImgName"/>
 	</resultMap>
-	
+
 	<insert id="insertCart">
 		MERGE INTO SHOP_CART
 		USING DUAL
-		ON (ITEM_CODE = #{itemCode} and MEM_ID = #{memId}) 
-		WHEN MATCHED THEN 
-			UPDATE 
+		ON (ITEM_CODE = #{itemCode} AND MEM_ID = #{memId})
+		WHEN MATCHED THEN
+			UPDATE
 			SET
 			ITEM_CNT = ITEM_CNT + #{itemCnt}
 			WHERE MEM_ID = #{memId}
-		WHEN NOT MATCHED THEN 
+		WHEN NOT MATCHED THEN
 			INSERT (
 				CART_NUM
 				, ITEM_CODE
 				, MEM_ID
 				, ITEM_CNT
-			) VALUES(
+			) VALUES (
 				(SELECT NVL(MAX(CART_NUM), 0) + 1 FROM SHOP_CART)
 				, #{itemCode}
 				, #{memId}
 				, #{itemCnt}
 			)
 	</insert>
-
- 	<select id="selectCartList" resultMap="cartView">
+	
+	<select id="selectCartList" resultMap="cartView">
 		SELECT CART_NUM
 			, ITEM_CODE
 			, ITEM_NAME
@@ -59,35 +58,49 @@
 		FROM CART_VIEW
 		WHERE MEM_ID = #{memId}
 		ORDER BY CART_NUM DESC
-	</select> 
-	
+	</select>
 	
 	<delete id="deleteCart">
-		DELETE FROM SHOP_CART
+		DELETE SHOP_CART
 		WHERE ITEM_CODE = #{itemCode}
 		AND MEM_ID = #{memId}
 	</delete>
 	
 	<update id="updateItemCnt">
-		UPDATE SHOP_CART 
-		SET 
+		UPDATE SHOP_CART
+		SET
 		ITEM_CNT = #{itemCnt}
 		WHERE MEM_ID = #{memId}
 		AND ITEM_CODE = #{itemCode}
 	</update>
 	
-	
-	
-	<!-- separator는 for문 한 번 돌 때마다 생기는 것을 지칭한다.  -->
 	<delete id="deleteCarts">
-		DELETE SHOP_CART
+		DELETE SHOP_CART    
 		WHERE MEM_ID = #{memId}
-		AND ITEM_CODE IN
+		AND ITEM_CODE IN   
 		<foreach collection="itemCodeArr" item="itemCode" open="(" close=")" separator=",">
-			#{itemCode}
+			#{itemCode}      
 		</foreach> 
 	</delete>
-</mapper> 
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

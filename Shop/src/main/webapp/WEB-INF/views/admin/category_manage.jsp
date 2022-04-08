@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-카테고리 관리 페이지라네
+카테고리 관리 페이지입니다.
 </body>
 </html>

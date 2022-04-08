@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-상품 관리 페이지 입니다. 
+상품관리페이지입니다.
 </body>
 </html>

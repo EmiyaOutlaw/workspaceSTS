@@ -3,30 +3,29 @@
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="memberMapper">
 	<resultMap type="com.kh.shop.vo.MemberVO" id="member">
-		<id column="MEM_ID" property="memId"/>
-		<result column="MEM_PW" property="memPw"/>
-		<result column="MEM_NAME" property="memName"/>
-		<result column="MEM_TELL" property="memTell"/>
-		<result column="MEM_EMAIL" property="memEmail"/>
-		<result column="MEM_ADDR" property="memAddr"/>
-		<result column="IS_ADMIN" property="isAdmin"/>
-		<result column="JOIN_DATE" property="joinDate"/>
+		<id column="MEM_ID" 		property="memId"/>
+		<result column="MEM_PW" 	property="memPw"/>
+		<result column="MEM_NAME" 	property="memName"/>
+		<result column="MEM_TELL" 	property="memTell"/>
+		<result column="MEM_EMAIL" 	property="memEmail"/>
+		<result column="MEM_ADDR" 	property="memAddr"/>
+		<result column="IS_ADMIN" 	property="isAdmin"/>
+		<result column="JOIN_DATE" 	property="joinDate"/>
 	</resultMap>
-
 	
 	<insert id="join">
-		INSERT INTO SHOP_MEMBER(
+		INSERT INTO SHOP_MEMBER (
 			MEM_ID
 			, MEM_PW
 			, MEM_NAME
-			, MEM_TELL
+			, MEM_TELL        
 			, MEM_EMAIL
 			, MEM_ADDR
-		) VALUES(
+		) VALUES (
 			#{memId}
 			, #{memPw}
 			, #{memName}
-			, #{memTell}
+			, #{memTell} 
 			, #{memEmail}
 			, #{memAddr}
 		)

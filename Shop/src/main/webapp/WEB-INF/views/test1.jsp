@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-검색한 곳이노라
+This is a test1.jsp file.<br>
+<a href="/test/test2">to move test2.jsp</a>
 </body>
 </html>

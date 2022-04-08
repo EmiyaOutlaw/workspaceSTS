@@ -14,10 +14,6 @@ public class BuyVO {
 	private MemberVO memberVO;
 	private ItemVO itemVO;
 	
-	
-	
-	
-	
 	public ItemVO getItemVO() {
 		return itemVO;
 	}
@@ -79,6 +75,18 @@ public class BuyVO {
 		this.orderNum = orderNum;
 	}
 	
-	
-	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

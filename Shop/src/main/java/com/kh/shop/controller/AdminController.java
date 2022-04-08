@@ -7,8 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.swing.text.Document;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.kh.shop.service.adminService;
-import com.kh.shop.service.itemService;
+import com.kh.shop.service.AdminService;
+import com.kh.shop.service.ItemService;
 import com.kh.shop.util.MyDateUtil;
+import com.kh.shop.vo.BuySearchVO;
 import com.kh.shop.vo.BuyVO;
 import com.kh.shop.vo.ImgVO;
 import com.kh.shop.vo.ItemVO;
@@ -28,125 +27,80 @@ import com.kh.shop.vo.ItemVO;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
-	@Resource(name="adminService")
-	private adminService adminService;
-	@Resource(name="itemService")
-	private itemService itemService;
+	@Resource(name = "adminService")
+	private AdminService adminService;
 	
-
-	//카테고리 관리 페이지로 이동 (상단에 관리자 메뉴 클릭 시 실행)
+	@Resource(name = "itemService")
+	private ItemService itemService;
+	
+	//카테고리 관리 페이지로 이동(상단에 관리자 메뉴 클릭 시 실행)
 	@GetMapping("/categoryManage")
 	public String categoryManage(Model model, String menuCode, String subMenuCode) {
+		//관리자 메뉴 목록 조회
+		model.addAttribute("menuList", adminService.selectMenuList());
 		
-		//관리자 메뉴 목록 조회 
-		model.addAttribute("menuList", adminService.selectMenuLIst());
-
 		if(menuCode == null) {
 			menuCode = "MENU_001";
 		}
-		
 		if(subMenuCode == null) {
 			subMenuCode = "SUB_MENU_001";
-			
 		}
-	
-		model.addAttribute("selectedSubMenu", subMenuCode); //SUB_MENU_001 OR SUB_MENU_002
 		
-		//현재 menuCode 전송 
-		model.addAttribute("selectedMenu", menuCode); //Menu_001 or Menu_002
-
-		//하위 메뉴 목록 조회
+		model.addAttribute("selectedMenu", menuCode);//MENU_001
+		model.addAttribute("selectedSubMenu", subMenuCode);//SUB_MENU_001
+		
+		//하위메뉴목록 조회
 		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
-		
-
 		
 		return "admin/category_manage";
 	}
 	
-		//상품 등록 페이지로 이동 
-		@GetMapping("/regItem")
-		public String regItem(Model model, String menuCode, String subMenuCode) {
-	
+	//상품등록 페이지로 이동
+	@GetMapping("/regItem")
+	public String regItem(Model model, String menuCode, String subMenuCode) {
 		//카테고리 목록 조회
 		model.addAttribute("categoryList", itemService.selectCategoryList());
-	
-		//관리자 메뉴 목록 조회 
-		model.addAttribute("menuList", adminService.selectMenuLIst());
-				
-		//상품 관리 메뉴의 하위 메뉴 목록 조회
+		
+		//관리자 메뉴 목록 조회
+		model.addAttribute("menuList", adminService.selectMenuList());
+		
+		//상품관리 메뉴의 하위메뉴목록 조회
 		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
-	
+		
 		model.addAttribute("selectedMenu", menuCode);
 		model.addAttribute("selectedSubMenu", subMenuCode);
 		
-		
 		return "admin/reg_item";
-	
-		
-
 	}
-		
-		//상품 관리 페이지로 이동(side)
-		@GetMapping("/itemManage")
-		public String itemManage(Model model, String menuCode, String subMenuCode) {
-			
-			
-			
-			//관리자 메뉴 목록 조회 
-			model.addAttribute("menuList", adminService.selectMenuLIst());
-					
-			//상품 관리 메뉴의 하위 메뉴 목록 조회
-			model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
-			
-			model.addAttribute("selectedMenu", menuCode);
-			model.addAttribute("selectedSubMenu", subMenuCode);
-			
-			return "admin/item_manage";
-		}
-		
 	
+	//상품등록
 	@PostMapping("/regItem")
-	// 상품등록
 	public String regItem(ItemVO itemVO, MultipartHttpServletRequest multi) {
-		
 		//여러 이미지 정보를 세팅할 공간 생성
 		List<ImgVO> imgList = new ArrayList<ImgVO>();
 		
 		//이미지 삽입 쿼리 실행 시 빈값을 채워줄 객체
 		ImgVO imgVO = new ImgVO();
 		
-		
-		//1
-		//2
-		//3
-		//....
-		//10
-		//다음에 들어갈 IMG_CODE값을 조회
-		
+		//다음에 들어갈 IMG_CODE 값을 조회
 		int nextImgCode = adminService.selectNextImgCode();
 		
-		
 		//다음에 들어갈 ITEM_CODE값을 조회
-		
 		String nextItemCode = adminService.selectNextItemCode();
 		
-		
-		//이미지 첨부(파일 업로드)
-		//첨부파일이 들어가는 input 태그들의 name 속성값을 가져온다. 
+		//------------이미지 첨부(파일 업로드)--------------//
+		//첨부파일이 들어가는 input 태그들의 name 속성 값을 가져온다.
 		Iterator<String> inputTagNames = multi.getFileNames();
-	
 		
-		//첨부파일이 저장 될 위치를 지정 
+		//첨부파일이 저장될 위치 지정
 		String uploadPath = "D:\\Git\\workspaceSTS\\Shop\\src\\main\\webapp\\resources\\images\\";
 		
-		
-		//첨부 파일이 들어간 input 태그의 개수만큼 반복 
+		//첨부파일이 들어간 input 태그의 개수만큼 반복
 		while(inputTagNames.hasNext()) {
-			String inputTagName = inputTagNames.next();
 			//"mainImg", "subImg"
+			String inputTagName = inputTagNames.next();
 			
-			//다중 첨부....
+			//다중 첨부...
 			if(inputTagName.equals("subImg")) {
 				List<MultipartFile> fileList = multi.getFiles(inputTagName);
 				
@@ -154,60 +108,44 @@ public class AdminController {
 					//원본 파일명
 					String originFileName = file.getOriginalFilename();
 					
-					
 					if(!originFileName.equals("")) {
 						//첨부할 파일명
 						String attachedFileName = System.currentTimeMillis() + "_" + originFileName;
+						
 						try {
 							file.transferTo(new File(uploadPath + attachedFileName));
-							
 							ImgVO vo = new ImgVO();
-							
-							vo.setImgCode(nextImgCode++); // ex) 8, 9, 10
+							vo.setImgCode(nextImgCode++);
 							vo.setOriginImgName(originFileName);
 							vo.setAttachedImgName(attachedFileName);
 							vo.setIsMain("N");
 							vo.setItemCode(nextItemCode);
 							imgList.add(vo);
 							
-							
 						} catch (IllegalStateException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
-						
+						}
 					}
-					
-					}
-					
 				}
-				
-				
 			}
-			
 			//단일 첨부...
 			else{
-				
-				//name이 "mainImg"인 input 태그의 파일 정보를 가져 옴 
+				//name이 "mainImg"인 input태그의 파일 정보를 가져 옴. 
 				MultipartFile file = multi.getFile(inputTagName);
 				
-				
-				
-				//첨부하고자 하는 파일명 
+				//첨부하고자 하는 파일명
 				String originFileName = file.getOriginalFilename();
-				
+
 				if(!originFileName.equals("")) {
 					//첨부할 파일명
-					//1640104_자바.jpg
 					String attachedFileName = System.currentTimeMillis() + "_" + originFileName;
-
-					//파일 업로드 
+					
+					//파일 업로드
 					//매개변수로 경로 및 파일명을 넣어줌
 					try {
 						file.transferTo(new File(uploadPath + attachedFileName));
-						
 						
 						ImgVO vo = new ImgVO();
 						vo.setImgCode(nextImgCode++);
@@ -217,111 +155,110 @@ public class AdminController {
 						vo.setItemCode(nextItemCode);
 						imgList.add(vo);
 						
-						
 					} catch (IllegalStateException e) {
 						e.printStackTrace();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
-				
-		
-				
 			}
 		}
-		
-		//---------------이미지 첨부 끝-------------
-		
-		
+		//------------이미지 첨부 끝!!!!!!!--------------//
+	
 		
 		//상품 정보 INSERT (SHOP_ITEM)
 		itemVO.setItemCode(nextItemCode);
-		imgVO.setImgList(imgList);		
+		imgVO.setImgList(imgList);
 		adminService.insertItem(itemVO, imgVO);
 		
 		//상품 이미지 정보 INSERT(ITEM_IMAGE)
 		//adminService.insertImages(imgVO);
 		
 		
-		
-		
 		return "redirect:/admin/regItem?menuCode=MENU_001&subMenuCode=SUB_MENU_002";
 	}
 	
+	//상품관리 페이지로 이동(싸이드)
+	@GetMapping("/itemManage")
+	public String itemManage(Model model, String menuCode, String subMenuCode) {
+		//관리자 메뉴 목록 조회
+		model.addAttribute("menuList", adminService.selectMenuList());
+		
+		//상품관리 메뉴의 하위메뉴목록 조회
+		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
+		
+		model.addAttribute("selectedMenu", menuCode);
+		model.addAttribute("selectedSubMenu", subMenuCode);		
+		return "admin/item_manage";
+	}
 	
-	//회원 목록 페이지로 이동 
+	//회원 목록 페이지로 이동
 	@GetMapping("/memberList")
 	public String memberList(Model model, String menuCode, String subMenuCode) {
+		//관리자 메뉴 목록 조회
+		model.addAttribute("menuList", adminService.selectMenuList());
 		
-		
-		//관리자 메뉴 목록 조회 
-		model.addAttribute("menuList", adminService.selectMenuLIst());
-				
-		//상품 관리 메뉴의 하위 메뉴 목록 조회
+		//상품관리 메뉴의 하위메뉴목록 조회
 		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
 		
 		if(subMenuCode == null) {
 			subMenuCode = "SUB_MENU_004";
-			
 		}
 		
-		
 		model.addAttribute("selectedMenu", menuCode);
-		model.addAttribute("selectedSubMenu", subMenuCode);		
-		
+		model.addAttribute("selectedSubMenu", subMenuCode);	
 		
 		return "admin/member_list";
 	}
 	
-	//구매 목록 관리
-	@GetMapping("/manageBuyList")
-	
-	public String selectBuyList(Model model, String menuCode, String subMenuCode) {
+	//구매목록관리
+	@RequestMapping("/buyManage")
+	public String buyManage(Model model, String menuCode, String subMenuCode, BuySearchVO buySearchVO) {
+		//관리자 메뉴 목록 조회
+		model.addAttribute("menuList", adminService.selectMenuList());
 		
-		//카테고리 목록 조회
-		model.addAttribute("categoryList", itemService.selectCategoryList());
-	
-		//관리자 메뉴 목록 조회 
-		model.addAttribute("menuList", adminService.selectMenuLIst());
-				
-		//상품 관리 메뉴의 하위 메뉴 목록 조회
+		//상품관리 메뉴의 하위메뉴목록 조회
 		model.addAttribute("subMenuList", adminService.selectSubMenuList(menuCode));
-	
+		
 		model.addAttribute("selectedMenu", menuCode);
-		model.addAttribute("selectedSubMenu", subMenuCode);
-		
-		model.addAttribute("buyList", adminService.selectBuyList());
-		
+		model.addAttribute("selectedSubMenu", subMenuCode);		
+
 		//이달의 1일
 		String firstDate = MyDateUtil.getFirstDateOfNowMonth();
 		
-		
 		//오늘날짜를 구함
-		String nowDate = MyDateUtil.getNowDatToString();
-		
-		model.addAttribute("firstDate", firstDate);
-		model.addAttribute("nowDate", nowDate);
-		
-		return "admin/manage_buy_list";
-	}
+		String nowDate = MyDateUtil.getNowDateToString();
 	
+		if(buySearchVO.getSearchFromDate() == null) {
+			buySearchVO.setSearchFromDate(firstDate);
+		}
+		if(buySearchVO.getSearchToDate() == null) {
+			buySearchVO.setSearchToDate(nowDate);
+		}
+		
+		model.addAttribute("buyList", adminService.selectBuyList(buySearchVO));
+		
+		return "admin/buy_manage";
+	}
 	
 	@ResponseBody
 	@PostMapping("/selectBuyListDetail")
 	public List<BuyVO> selectBuyListDetail(String orderNum) {
 		return adminService.selectBuyListDetail(orderNum);
-		
 	}
 	
-	
-	//검색 기능 
-	
-	@ResponseBody
-	@PostMapping("/searchBuiedLists")
-	public void searchBuiedLists() {
-		
-		
-		
-	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

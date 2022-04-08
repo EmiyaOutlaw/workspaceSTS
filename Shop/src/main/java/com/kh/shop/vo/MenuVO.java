@@ -5,9 +5,6 @@ public class MenuVO {
 	private String menuName;
 	private String menuUri;
 	
-	
-	
-	
 	public String getMenuUri() {
 		return menuUri;
 	}
