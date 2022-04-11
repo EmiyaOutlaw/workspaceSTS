@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="boardMapper">
+<!-- 	 <resultMap type="MEMBER_ID" id="memberId">
+		<id column="MEMBER_PASSWORD" property="memberPassword"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MEMBER_AGE" property="memberAge"/>
+		<result column="MEMBER_ADDR" property="memberAddr"/>
+		<result column="MEMBER_BIRTHDAY" property="memberBirthday"/>
+		<result column="ADMIN_YN" property="adminYn"/>
+	 
+	 </resultMap>
+	  -->
+	 
 	
 </mapper>
 

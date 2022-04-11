@@ -22,6 +22,7 @@ public class TestInterceptor extends HandlerInterceptorAdapter{
 		
 		
 		System.out.println("TestInterceptor -> preHandle() 실행");
+		String name = request.getParameter("name");
 		return true; //원래 요청 경로대로 진행...
 	
 	}

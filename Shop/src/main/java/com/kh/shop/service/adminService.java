@@ -32,6 +32,8 @@ public interface AdminService {
 	List<BuyVO> selectBuyList(BuySearchVO buySearchVO);
 	
 	List<BuyVO> selectBuyListDetail(String orderNum);
+	
+	int selectBuyListCnt(BuySearchVO buySearchVO);
 }
 
 

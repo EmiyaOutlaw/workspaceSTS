@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-게시글 목록 화면입니다.
+board_list.jsp
 </body>
 </html>

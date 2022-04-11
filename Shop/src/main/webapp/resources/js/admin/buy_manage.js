@@ -68,6 +68,15 @@ function selectBuyListDetail(orderNum){
 }
 
 
+function search(nowPage){
+	document.getElementById('nowPage').value = nowPage;
+	
+	var formTag = document.getElementById('searchForm');
+	formTag.submit();
+	
+}
+
+
 
 
 

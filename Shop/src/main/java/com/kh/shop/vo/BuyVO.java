@@ -13,7 +13,17 @@ public class BuyVO {
 	private List<BuyVO> buyList;
 	private MemberVO memberVO;
 	private ItemVO itemVO;
+	private int rowNum;
 	
+	
+	
+	
+	public int getRowNum() {
+		return rowNum;
+	}
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
 	public ItemVO getItemVO() {
 		return itemVO;
 	}

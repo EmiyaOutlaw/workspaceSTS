@@ -55,12 +55,27 @@
 			<!--  testInterceptor를 사용하겠다!-->
 			<beans:ref bean="testInterceptor"/>
 		</interceptor>
-		<interceptor>
 		
+		<interceptor>
 			<mapping path="/test/test3"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/admin/itemManage"/>
+			<mapping path="/admin/buyManage"/>
+			<mapping path="/admin/memberList"/>
+			<mapping path="/admin/regItem"/>
+			<mapping path="/admin/categoryManage"/>
+			<beans:ref bean="menuInterceptor"/>
+		</interceptor>
+		
 	</interceptors>
+	
+	
+		
+
+	
 	
 </beans:beans>
 

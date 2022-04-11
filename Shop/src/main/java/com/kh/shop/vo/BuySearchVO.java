@@ -1,7 +1,7 @@
 package com.kh.shop.vo;
 
 //구매 목록 조회 시 검색 데이터를 가질 VO
-public class BuySearchVO {
+public class BuySearchVO extends PageVO {
 	private String searchOrderNum;
 	private String searchBuyer;
 	private String searchFromDate;

@@ -27,6 +27,7 @@ public class MemberContoller {
 	@Resource(name="memberService")
 	private MemberService memberService;
 	
+	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
 		System.out.println(memberVO);
@@ -40,6 +41,8 @@ public class MemberContoller {
 		
 		if(result != null) {
 			session.setAttribute("loginInfo", result);
+			//session에 데이터가 저장되는 시간을 설정 
+			//session.setMaxInactiveInterval(5);
 		}
 		
 		return "redirect:/item/itemList";

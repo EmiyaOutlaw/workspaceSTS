@@ -60,6 +60,11 @@ public class AdminServiceImpl implements AdminService{
 	public List<BuyVO> selectBuyListDetail(String orderNum) {
 		return sqlSession.selectList("adminMapper.selectBuyListDetail", orderNum);
 	}
+
+	@Override
+	public int selectBuyListCnt(BuySearchVO buySearchVO) {
+		return sqlSession.selectOne("adminMapper.selectBuyListCnt", buySearchVO);
+	}
 }
 
 

@@ -23,6 +23,7 @@
 		<result column="BUY_PRICE" 	property="buyPrice"/>
 		<result column="BUY_DATE" 	property="buyDate"/>
 		<result column="ORDER_NUM" 	property="orderNum"/>
+		<result column="ROW_NUM" 	property="rowNum"/>
 		<association property="memberVO" resultMap="memberMapper.member"/>
 		<association property="itemVO" resultMap="itemMapper.item2"/>
 	</resultMap>
@@ -88,27 +89,46 @@
 		FROM SHOP_ITEM
 	</select>
 	
+	
+	
 	<select id="selectBuyList" resultMap="buy">
-		SELECT DISTINCT ORDER_NUM
-		    , MEM_ID
-		    , (SELECT MEM_NAME
-		        FROM SHOP_MEMBER
-		        WHERE MEM_ID = SHOP_BUY.MEM_ID) AS MEM_NAME
-		    , TO_CHAR(BUY_DATE, 'YYYY-MM-DD HH24:MI') AS BUY_DATE
-		FROM SHOP_BUY
-		WHERE 1 = 1
-		<if test="searchOrderNum != null and !searchOrderNum.equals('')">
-		AND UPPER(ORDER_NUM) LIKE UPPER('%'||#{searchOrderNum}||'%')
-		</if>   
-		<if test="searchBuyer != null and !searchBuyer.equals('')">
-		AND (UPPER(MEM_ID) LIKE UPPER('%'||#{searchBuyer}||'%') 
-		        OR 
-		    UPPER((SELECT MEM_NAME
-		        FROM SHOP_MEMBER               
-		        WHERE MEM_ID = SHOP_BUY.MEM_ID)) LIKE UPPER('%'||#{searchBuyer}||'%'))
-		</if>     
-		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') &gt;= #{searchFromDate} AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') &lt;= #{searchToDate}
-		ORDER BY BUY_DATE DESC
+SELECT  ORDER_NUM
+    , MEM_ID
+    , MEM_NAME
+    , BUY_DATE
+    , ROW_NUM
+FROM
+(
+    SELECT ORDER_NUM
+        , MEM_ID
+        , MEM_NAME
+        , BUY_DATE
+        , ROWNUM AS ROW_NUM
+    FROM
+    (
+        SELECT DISTINCT ORDER_NUM
+            , MEM_ID
+            , (SELECT MEM_NAME
+                FROM SHOP_MEMBER
+                WHERE MEM_ID = SHOP_BUY.MEM_ID) AS MEM_NAME
+            , TO_CHAR(BUY_DATE, 'YYYY-MM-DD HH24:MI') AS BUY_DATE
+        FROM SHOP_BUY
+        WHERE 1 = 1
+        <if test="searchOrderNum != null and !searchOrderNum.equals('')">
+        AND UPPER(ORDER_NUM) LIKE UPPER('%'||#{searchOrderNum}||'%')
+        </if>   
+        <if test="searchBuyer != null and !searchBuyer.equals('')">
+        AND (UPPER(MEM_ID) LIKE UPPER('%'||#{searchBuyer}||'%') 
+                OR 
+            UPPER((SELECT MEM_NAME
+                FROM SHOP_MEMBER               
+                WHERE MEM_ID = SHOP_BUY.MEM_ID)) LIKE UPPER('%'||#{searchBuyer}||'%'))
+        </if>     
+        AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') &gt;= #{searchFromDate} AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') &lt;= #{searchToDate}
+        ORDER BY BUY_DATE DESC
+    )
+)
+	WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
 	<select id="selectBuyListDetail" resultMap="buy">
@@ -124,6 +144,23 @@
 		AND BUY.MEM_ID = MEMBER.MEM_ID
 		AND IS_MAIN = 'Y'
 		AND ORDER_NUM = #{orderNum}
+	</select>
+	
+	<select id="selectBuyListCnt" resultType="int">
+		SELECT COUNT(DISTINCT ORDER_NUM)
+		FROM SHOP_BUY
+        WHERE 1 = 1
+        <if test="searchOrderNum != null and !searchOrderNum.equals('')">
+        AND UPPER(ORDER_NUM) LIKE UPPER('%'||#{searchOrderNum}||'%')
+        </if>   
+        <if test="searchBuyer != null and !searchBuyer.equals('')">
+        AND (UPPER(MEM_ID) LIKE UPPER('%'||#{searchBuyer}||'%') 
+                OR 
+            UPPER((SELECT MEM_NAME
+                FROM SHOP_MEMBER               
+                WHERE MEM_ID = SHOP_BUY.MEM_ID)) LIKE UPPER('%'||#{searchBuyer}||'%'))
+        </if>     
+        AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') &gt;= #{searchFromDate} AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') &lt;= #{searchToDate}
 	</select>
 	
 </mapper>

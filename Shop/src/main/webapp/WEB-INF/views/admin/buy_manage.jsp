@@ -27,7 +27,8 @@
 	<div class="col">
 		<div class="row">
 			<div class="col">
-				<form action="/admin/buyManage" method="post">
+				<form action="/admin/buyManage" method="post" id="searchForm">
+					<input type="hidden"  name="nowPage"  value="1" id="nowPage">
 					<input type="hidden" name="menuCode" value="${selectedMenu }">
 					<input type="hidden" name="subMenuCode" value="${selectedSubMenu }">
 					<table class="table align-middle searchTable">
@@ -91,7 +92,7 @@
 				  <tbody>
 				  	<c:forEach items="${buyList }" var="buyInfo" varStatus="status">
 		  				<tr>
-					      <td>${buyList.size() - status.index }</td>
+					      <td>${ buySearchVO.totalCnt - buyInfo.rowNum +1 }</td>
 					      <td><span style="cursor: pointer;" onclick="selectBuyListDetail('${buyInfo.orderNum }');">${buyInfo.orderNum }</span></td>	
 					      <td>${buyInfo.memId }(${buyInfo.memberVO.memName })</td>
 					      <td>${buyInfo.buyDate }</td>
@@ -100,6 +101,26 @@
 				  </tbody>
 				</table>
 			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="page-item <c:if test="${!buySearchVO.prev  }">disabled</c:if> ">
+								<a class="page-link" href="/admin/buyManage?nowPage=${buySearchVO.beginPage - 1 }"
+								aria-label="Previous" > <span aria-hidden="true">&laquo;</span>
+								</a>
+
+							</li>
+								<c:forEach begin="${buySearchVO.beginPage }" end="${buySearchVO.endPage }" var="pageIndex">
+				                   	<li class="page-item <c:if test="${buySearchVO.nowPage eq pageIndex }">active</c:if>"><a class="page-link" href="javascript:search(${pageIndex});" >${pageIndex }</a></li>
+				                </c:forEach>
+							<li class="page-item <c:if test="${!buySearchVO.next  }">disabled</c:if> "><a class="page-link" href="/admin/buyManage?nowPage=${buySearchVO.endPage + 1 }"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+					</nav>
+				</div>
 		</div>
 	</div>
 </div>
@@ -123,7 +144,7 @@
     </div>
   </div>
 </div>
-<script type="text/javascript" src="/resources/js/admin/buy_manage.js?ver=13"></script>
+<script type="text/javascript" src="/resources/js/admin/buy_manage.js?ver=15"></script>
 </body>
 </html>
 
