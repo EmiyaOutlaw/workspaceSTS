@@ -21,6 +21,12 @@ public class MemberServiceImpl implements MemberService{
 		return sqlSession.selectOne("memberMapper.login", memberVO);
 	}
 
+	@Override
+	public String findPw(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.findPw", memberVO);
+	}
+
+
 }
 
 

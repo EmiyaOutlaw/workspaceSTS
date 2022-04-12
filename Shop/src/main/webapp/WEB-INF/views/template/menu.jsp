@@ -69,6 +69,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/cookie/test1">쿠키 테스트</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/member/findPw">비밀 번호 찾기</a>
+						</li>
 					</ul>
 				</div>
 			</div>

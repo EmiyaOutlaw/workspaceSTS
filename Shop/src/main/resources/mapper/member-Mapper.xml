@@ -40,6 +40,12 @@
 		AND MEM_PW = #{memPw}
 	</select>
 	
+	<select id="findPw"  resultType="String">
+		SELECT MEM_ID
+			, MEM_EMAIL
+		FROM SHOP_MEMBER
+	</select>
+	
 </mapper>
 
 

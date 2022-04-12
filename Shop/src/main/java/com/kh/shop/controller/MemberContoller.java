@@ -1,5 +1,6 @@
 package com.kh.shop.controller;
 
+import java.security.SecureRandom;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -53,6 +54,52 @@ public class MemberContoller {
 		session.removeAttribute("loginInfo");
 		return "redirect:/item/itemList";
 	}
+	
+	@GetMapping("/findPw")
+	public String findPw() {
+	
+		return "member/find_pw";
+	}
+	
+	
+	@PostMapping("/findPw")
+	public String findindPw(MemberVO memberVO) {
+		
+		//메일 정보 조회
+		String memEmail = memberService.findPw(memberVO);
+		
+		//임시비밀번호 생성 소문자 + 대문자 + 숫자 포함 8자리 
+		System.out.println(getImsiPw());
+		
+		
+		return "";
+	}
+	
+
+	//소문자 + 대문자 + 숫자 포함 8자리의 문자열 생성 및 생성
+	public String getImsiPw() {
+		
+		String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+		String upperCase = lowerCase.toUpperCase();
+		String number = "0123456789";
+		String baseStr = lowerCase + upperCase + number;
+		
+		//String imsiPw = "";
+		StringBuilder imsiPw = new StringBuilder();
+		
+		
+		for(int i = 0; i < 8; i++) {
+			
+			SecureRandom rand = new SecureRandom();
+			int index = rand.nextInt(baseStr.length());
+			char c = baseStr.charAt(index);
+			imsiPw.append(String.valueOf(c));
+		}
+		
+		return imsiPw.toString();
+		
+	}
+	
 	
 }
 

@@ -8,6 +8,9 @@ public interface MemberService {
 	
 	//로그인
 	MemberVO login(MemberVO memberVO);
+	
+	//비밀번호 찾기
+	String findPw(MemberVO memberVO);
 }
 
 
