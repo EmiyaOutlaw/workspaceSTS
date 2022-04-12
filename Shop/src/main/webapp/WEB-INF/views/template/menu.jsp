@@ -66,6 +66,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/test/test1">인터셉터 테스트</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/cookie/test1">쿠키 테스트</a>
+						</li>
 					</ul>
 				</div>
 			</div>

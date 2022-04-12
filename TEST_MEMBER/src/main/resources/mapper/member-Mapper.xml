@@ -20,7 +20,7 @@
 	 		, MEMBER_NAME
 	 		, MEMBER_AGE
 	 		, MEMBER_ADDR
-			, TO_CHAR(MEMBER_BIRTHDATE, 'YYYY-MM-DD') AS BIRTHDAY_DATE
+			, MEMBER_BIRTHDAY
 	 	) 
 	 VALUES(
 	 		#{memberId}
@@ -28,7 +28,7 @@
 	 		, #{memberName}
 	 		, #{memberAge}
 	 		, #{memberAddr}
-	 		, #{memberBirthday}
+	 		, TO_DATE(#{memberBirthday}, 'YYYY-MM-DD')
 	 	)
 	 </insert>
 	
@@ -38,7 +38,7 @@
 			, ADMIN_YN
 		FROM TEST_MEMBER1
 		WHERE MEMBER_ID = #{memberId}
-		AND memberPassword = #{memberPassword}
+		AND MEMBER_PASSWORD = #{memberPassword}
 	</select>
 	
 	

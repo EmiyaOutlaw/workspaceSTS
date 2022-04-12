@@ -24,7 +24,7 @@
 	<div class="col text-end">
 		<c:choose>
 			<c:when test="${not empty sessionScope.loginInfo }">
-				${sessionScope.loginInfo.memName }님 반갑습니다!
+				${sessionScope.loginInfo.memberName }님 반갑습니다!
 				<a href="/member/logout">Logout</a>
 			</c:when>
 			<c:otherwise>
@@ -45,17 +45,17 @@
       	<form action="/member/login" method="post">
 	        <div class="row">
 	        	<div class="mb-3">
-	        		<input name="memId" class="form-control" type="text" placeholder="Input ID here" required>
+	        		<input name="memberId" class="form-control" type="text" id="memberId" placeholder="Input ID here" required >
 	        	</div>
 	        </div>
 	        <div class="row">
 	        	<div class="mb-3">
-	        		<input name="memPw" class="form-control" type="text" placeholder="Input Password here" required>
+	        		<input name="memberPassword" class="form-control" type="text"  id="memberPassword" placeholder="Input Password here" required >
 	        	</div>
 	        </div>
 	        <div class="row">
 	        	<div class="col d-grid gap-2">
-		        	<button type="submit" class="btn btn-primary">LOGIN</button>
+		        	<button type="submit" class="btn btn-primary" id="loginButton">LOGIN</button>
 	        	</div>
 	        </div>
         </form>
@@ -105,6 +105,6 @@
 </div>
 
 </body>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?ver=1"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?ver=4"></script>
 <script src="/resources/js/common/menu.js" type="text/javascript"></script>
 </html>

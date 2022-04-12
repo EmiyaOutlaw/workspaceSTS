@@ -45,7 +45,7 @@ public class MemberContoller {
 			//session.setMaxInactiveInterval(5);
 		}
 		
-		return "redirect:/item/itemList";
+		return "redirect:/item/itemList";//login_result.jsp
 	}
 	
 	@GetMapping("/logout")

@@ -36,10 +36,10 @@ public class MemberController {
 		return "redirect:/board/boardList";
 	}
 	
-	//@GetMapping("/logout")
-	//public String logout() {
-	//	
-	//	return "";
-	//}
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginInfo");
+		return "redirect:/board/boardList";
+	}
 
 }

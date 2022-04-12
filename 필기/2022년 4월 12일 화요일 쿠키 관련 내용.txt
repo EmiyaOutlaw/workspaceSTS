@@ -1,0 +1,13 @@
+쿠키 is simillar with session
+
+httpprotocol은 보통 단발성이다. 그래서 중요한 정보는 서버에 저장을 하는데 
+이를 session이라고 한다,
+session: 단발성이 아닌 지속성. 
+
+*많은 데이터를 session에 넣으면 안 된다. 동시 접속자가 많으면 많은 데이터 땜에 
+서버가 터질 수 있기 때문이다. 
+
+
+session: 서버쪽에 저장
+cookie: 클라이언트 쪽에 저장 
+ 
