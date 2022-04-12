@@ -24,12 +24,3 @@ loginModal.addEventListener('hidden.bs.modal', function (event) {
 	}
 });
 
-//우편번호 검색 api
-function sample4_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            var roadAddr = data.roadAddress; // 도로명 주소 변수
-            document.getElementById("addr").value = roadAddr;
-        }
-    }).open();
-}

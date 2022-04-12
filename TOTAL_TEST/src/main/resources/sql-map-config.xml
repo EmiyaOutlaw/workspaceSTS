@@ -8,8 +8,7 @@
 	</settings>
 
 	<mappers>
-		<mapper resource="/mapper/board-Mapper.xml"/>
-		<mapper resource="/mapper/member-Mapper.xml"/>
+		<mapper resource="/mapper/emp-Mapper.xml"/>
 	</mappers>
 </configuration>
 

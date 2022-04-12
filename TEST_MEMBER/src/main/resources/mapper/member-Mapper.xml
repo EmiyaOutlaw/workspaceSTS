@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="boardMapper">
+ <resultMap type="com.kh.board.vo.MemberVO" id="member">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="MEMBER_PASSWORD" 	property="memberPassword"/>
+		<result column="MEMBER_NAME" 			property="memberName"/>
+		<result column="MEMBER_AGE" 				property="memberAge"/>
+		<result column="MEMBER_ADDR" 				property="memberAddr"/>
+		<result column="MEMBER_BIRTHDAY" 	property="memberBirthday"/>
+		<result column="ADMIN_YN" 						property="adminYn"/>
+	 
+	 </resultMap>
+	
+	 <insert id="join">
+	 	INSERT INTO TEST_MEMBER1 (
+	 		MEMBER_ID
+	 		, MEMBER_PASSWORD
+	 		, MEMBER_NAME
+	 		, MEMBER_AGE
+	 		, MEMBER_ADDR
+			, TO_CHAR(MEMBER_BIRTHDATE, 'YYYY-MM-DD') AS BIRTHDAY_DATE
+	 	) 
+	 VALUES(
+	 		#{memberId}
+	 		, #{memberPassword}
+	 		, #{memberName}
+	 		, #{memberAge}
+	 		, #{memberAddr}
+	 		, #{memberBirthday}
+	 	)
+	 </insert>
+	
+	<select id="login" resultMap="member">
+		SELECT MEMBER_ID
+			, MEMBER_NAME
+			, ADMIN_YN
+		FROM TEST_MEMBER1
+		WHERE MEMBER_ID = #{memberId}
+		AND memberPassword = #{memberPassword}
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

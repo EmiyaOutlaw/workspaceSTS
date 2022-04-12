@@ -73,45 +73,27 @@
 				<form class="row g-3" action="/member/join" method="post">
 					<div class="col-12">
 						<label for="inputEmail4" class="form-label">ID</label>
-						<input type="text" class="form-control" id="inputEmail4" name="memId">
+						<input type="text" class="form-control" id="inputEmail4" name="memberId">
 					</div>
 					<div class="col-12">
 						<label for="inputEmail4" class="form-label">PASSWORD</label>
-						<input type="password" class="form-control" id="inputEmail4" name="memPw">
+						<input type="password" class="form-control" id="inputEmail4" name="memberPassword">
 					</div>
 					<div class="col-12">
 						<label for="inputEmail4" class="form-label">NAME</label>
-						<input type="text" class="form-control" id="inputEmail4" name="memName">
+						<input type="text" class="form-control" id="inputEmail4" name="memberName">
 					</div>
 					<div class="col-12">
-						<label for="inputEmail4" class="form-label">EMAIL</label>
-						<input type="email" class="form-control" id="inputEmail4" name="memEmail">
-					</div>
-					<div class="col-8">
-						<label for="addr" class="form-label">ADDRESS</label>
-						<input type="text" class="form-control" id="addr" name="memAddrs" onclick="sample4_execDaumPostcode();">
-					</div>
-					<div class="col-4 d-grid">
-						<label for="inputEmail5" class="form-label">&nbsp;</label>
-						<button type="button" class="btn btn-secondary" id="inputEmail5" onclick="sample4_execDaumPostcode();">우편번호</button>
+						<label for="inputEmail4" class="form-label">나이</label>
+						<input type="text" class="form-control" id="inputEmail4" name="memberAge">
 					</div>
 					<div class="col-12">
-						<input type="text" class="form-control" id="inputEmail4" name="memAddrs">
+						<label for="inputEmail4" class="form-label">주소</label>
+						<input type="text" class="form-control" id="inputEmail4" name="memberAddr">
 					</div>
-					<div class="col-4">
-						<label for="inputState" class="form-label">TELL</label>
-						<select id="inputState" class="form-select" name="memTells">
-							<option value="010" selected>010</option>
-							<option value="011">011</option>
-						</select>
-					</div>
-					<div class="col-4">
-						<label for="inputCity" class="form-label">&nbsp;</label>
-						<input type="text" class="form-control" id="inputCity" name="memTells">
-					</div>
-					<div class="col-4">
-						<label for="inputCity" class="form-label">&nbsp;</label>
-						<input type="text" class="form-control" id="inputCity" name="memTells">
+					<div class="col-12">
+						<label for="inputEmail4" class="form-label">생일</label>
+						<input type="text" class="form-control" id="inputEmail4" name="memberBirthday" placeholder="ex)19990909">
 					</div>
 					<div class="col-12 d-grid gap-2">
 						<button type="submit" class="btn btn-primary">JOIN</button>
@@ -123,6 +105,6 @@
 </div>
 
 </body>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?ver=1"></script>
 <script src="/resources/js/common/menu.js" type="text/javascript"></script>
 </html>
