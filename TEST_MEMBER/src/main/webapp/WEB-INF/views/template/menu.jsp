@@ -32,6 +32,9 @@
 				<span class="loginSpan" data-bs-target="#joinModal" data-bs-toggle="modal">Join</span>
 			</c:otherwise>
 		</c:choose>
+		<c:if test="${sessionScope.loginInfo.adminYn eq 'Y' }">
+			<a href="/member/admin">관리자 메뉴</a>
+		</c:if>
 	</div>
 </div>
 
@@ -50,7 +53,7 @@
 	        </div>
 	        <div class="row">
 	        	<div class="mb-3">
-	        		<input name="memberPassword" class="form-control" type="text"  id="memberPassword" placeholder="Input Password here" required >
+	        		<input name="memberPassword" class="form-control" type="password"  id="memberPassword" placeholder="Input Password here" required >
 	        	</div>
 	        </div>
 	        <div class="row">

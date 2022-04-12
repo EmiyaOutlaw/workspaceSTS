@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,14 +41,24 @@ h1{
 			<td>주소</td>
 			<td>생일 정보</td>
 		</tr>
-		<tr>
-			<td>id</td>
-			<td>이름</td>
-			<td>나이</td>
-			<td>주소</td>
-			<td>생일 정보</td>
-		</tr>
+		<c:forEach items="${memberLists }" var="mem">
+			<tr>
+				<td>${mem.memberId }</td>
+				<td>${mem.memberName }</td>
+				<td>${mem.memberAge }</td>
+				<td>${mem.memberAddr }</td>
+				<td>${mem.memberBirthday }</td>
+			</tr>
+		</c:forEach>
 	</table>
+	<c:if test="${result != null }" id="loginSuccess">
+		
+	</c:if>
+	<c:if test="${result == null }" id="loginFalse">
+		
+	</c:if>
 </div>
 </body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?ver=4"></script>
+<script src="/resources/js/common/menu.js" type="text/javascript"></script>
 </html>

@@ -41,5 +41,12 @@ public class MemberController {
 		session.removeAttribute("loginInfo");
 		return "redirect:/board/boardList";
 	}
+	
+	
+	@GetMapping("/admin")
+	public String admin() {
+		
+		return "/content/admin";
+	}
 
 }
