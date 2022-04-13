@@ -108,6 +108,5 @@
 </div>
 
 </body>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?ver=4"></script>
 <script src="/resources/js/common/menu.js" type="text/javascript"></script>
 </html>

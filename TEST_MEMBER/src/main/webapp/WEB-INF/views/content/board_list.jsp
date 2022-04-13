@@ -51,14 +51,10 @@ h1{
 			</tr>
 		</c:forEach>
 	</table>
-	<c:if test="${result != null }" id="loginSuccess">
-		
-	</c:if>
-	<c:if test="${result == null }" id="loginFalse">
-		
+	<c:if test="${not empty loginInfo}" >
+		<input type="hidden" id="loginSuccess">
 	</c:if>
 </div>
 </body>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js?ver=4"></script>
-<script src="/resources/js/common/menu.js" type="text/javascript"></script>
+<script src="/resources/js/common/menu.js?ver=2" type="text/javascript"></script>
 </html>
