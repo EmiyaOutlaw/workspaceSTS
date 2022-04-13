@@ -10,7 +10,14 @@ public class EmpController {
 	
 	@GetMapping("/deptManage")
 	public String boardList() {
-		return "dept_manage";
+		
+		return "main/start_page";
+	}
+	
+	@GetMapping("/manageDepartment")
+	public String manageDepartment() {
+		
+		return "main/manage_department";
 	}
 	
 }

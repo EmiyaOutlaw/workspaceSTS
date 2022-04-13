@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="empMapper">
+	<resultMap type="com.kh.emp.vo.DepartmentVO" id="department">
+	<id column="DEPT_NUM" property="deptNum"/>
+	<result column="DEPT_NAME" property="deptName"/>
+	<result column="DEPT_LOCAL" property="deptLocal"/>
+	</resultMap>
+	
+	<insert id="">
+		INSERT INTO TEST_DEPARTMENT (
+			DEPT_NUM
+			, DEPT_NAME
+			, DEPT_LOCAL
+		) VALUES (
+			#{deptNum}
+			, #{deptName}
+			, #{deptLocal}
+		
+		)
+	</insert>
+	
 	
 </mapper>
 

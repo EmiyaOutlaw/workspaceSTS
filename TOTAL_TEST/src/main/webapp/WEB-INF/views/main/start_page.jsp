@@ -5,8 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+h1{
+text-align: center;
+margin-top: 100px;
+}
+</style>
 </head>
 <body>
-부서관리페이지입니다.
+<h1>사원 관리 시스템</h1>
 </body>
 </html>
