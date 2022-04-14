@@ -1,6 +1,7 @@
 package com.kh.emp.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +40,7 @@ public class EmpController {
 	@PostMapping("/addDepartment")
 	public String addDepartment(DepartmentVO departmentVO) {
 		
+		
 		 departmentService.addDepartment(departmentVO);
 		return "reg_dept_result";
 	}
@@ -47,13 +49,14 @@ public class EmpController {
 	@GetMapping("/goStartPage")
 	public String goStartPage() {
 		
+		
 		return "main/start_page";
 	}
 	
 	//사원 등록 페이지로 이동
 	@GetMapping("/regWorker")
-	public String regWorker() {
-		
+	public String regWorker(DepartmentVO departmentVO, Model model) {
+		model.addAttribute("deptInfo", departmentService.select_department_lists(departmentVO));
 		return "main/reg_worker";
 	}
 	

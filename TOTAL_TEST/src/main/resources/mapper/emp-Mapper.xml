@@ -67,8 +67,9 @@
         
         <insert id="addDeptName">
         	INSERT INTO TEST_DEPARTMENT(
-        	DEPT_NAME
-        	
+        	DEPT_NUM
+        	, DEPT_NAME
+        	, DEPT_LOCAL
         		)VALUES(
         		#{deptName}
         		)

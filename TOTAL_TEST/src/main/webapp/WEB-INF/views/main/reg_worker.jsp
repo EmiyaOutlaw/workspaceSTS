@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,8 @@ textarea {
 <body>
 <div class="mainDiv">
 	<form action="/emp/addWorker" method="post">
+	<input type="hidden" name="${deptInfo.deptNum }">
+	<input type="hidden" name="${ deptInfo.deptLocal}">
 		<div class="workInfo" >
 			사원명 <input type="text" >
 		</div>
@@ -43,9 +46,9 @@ textarea {
 		</select>
 		부서
 		<select name="deptName" required>
-			<option>학교</option>
-			<option>게임</option>
-			<option>몰?루</option>
+			<c:forEach items="${deptInfo.deptName }" var="deptName">
+				<option>${deptName }</option>
+			</c:forEach>
 		</select>
 		</div>
 		<div class="workInfo">
