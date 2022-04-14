@@ -8,7 +8,7 @@
 	<result column="DEPT_LOCAL" 	property="deptLocal"/>
 	</resultMap>
 	
-	<!-- <resultMap type="" id="">
+	<!--  <resultMap type="com.kh.emp.vo.WorekrVO" id="worker">
 		<id column="WORKER_NUM" 							property="workerNum"/>
 		<result column="WORKER_NAME" 				property="workerName"/>
 		<result column="WORKER_CLASS"	 				property="workerClass"/>
@@ -16,7 +16,8 @@
 		<result column="WORKER_GENDER" 			property="workerGender"/>		
 		<result column="WORKER_PHONE_NUM" 	property="workerPhoneNum"/>		
 		<result column="DEPT_NUM" 							property="deptNum"/>		
-	</resultMap>  -->
+		<association property="DEPT_NAME" resultMap="department"/>
+	</resultMap>   -->
 	
 	<!-- 부서 등록하기  -->
 	<insert id="addDepartment">
@@ -32,6 +33,7 @@
 		)
 	</insert>
 	
+	<!--  부서 목록 조회-->
 	<select id="select_department_lists" resultMap="department">
 		SELECT DEPT_NUM
 			, DEPT_NAME
@@ -39,6 +41,38 @@
 		FROM TEST_DEPARTMENT
 		ORDER BY DEPT_NUM
 	</select>
+	
+	<!-- 회사원 등록하기  -->
+	
+	<insert id="addWorker">
+	INSERT INTO TEST_EMP (
+            WORKER_NUM
+            , WORKER_NAME
+            , WORKER_CLASS
+            , WORKER_GENDER
+            , WORKER_AGE
+            , WORKER_PHONE_NUM
+        ) VALUES(
+            (SELECT 
+       'EMP' || LPAD (NVL(MAX(TO_NUMBER(SUBSTR(WORKER_NUM, 4, 3))), 0) + 1, 3, 0)
+        FROM TEST_EMP)
+            , #{workerName}
+            , #{workerClass}
+            , #{workerGender}
+            , #{workerAge}
+            , #{workerPhoneNum}
+            )
+        </insert>
+        
+        
+        <insert id="addDeptName">
+        	INSERT INTO TEST_DEPARTMENT(
+        	DEPT_NAME
+        	
+        		)VALUES(
+        		#{deptName}
+        		)
+        </insert>
 	
 	
 </mapper>

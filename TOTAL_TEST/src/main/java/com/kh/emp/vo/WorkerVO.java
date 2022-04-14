@@ -1,6 +1,6 @@
 package com.kh.emp.vo;
 
-public class WorkerVO {
+public class WorkerVO extends DepartmentVO {
 
 	public String workerNum;
 	public String workerName;
@@ -9,6 +9,21 @@ public class WorkerVO {
 	public String workerGender;
 	public String workerPhoneNum;
 	public String deptNum;
+	
+	
+	private String[] workerPhoneNums;
+	
+	
+	
+	public String[] getWorkerPhoneNums() {
+		return workerPhoneNums;
+	}
+	public void setWorkerPhoneNums(String[] workerPhoneNums) {
+		this.workerPhoneNum = workerPhoneNums[0] + workerPhoneNums[1] +workerPhoneNums[2];
+	}
+	
+
+	
 	public String getWorkerNum() {
 		return workerNum;
 	}

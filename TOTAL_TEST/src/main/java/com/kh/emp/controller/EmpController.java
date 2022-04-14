@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.emp.service.EmpService;
 import com.kh.emp.vo.DepartmentVO;
+import com.kh.emp.vo.WorkerVO;
 
 @Controller
 @RequestMapping("/emp")
@@ -49,13 +50,21 @@ public class EmpController {
 		return "main/start_page";
 	}
 	
-	//사원 등록
+	//사원 등록 페이지로 이동
 	@GetMapping("/regWorker")
 	public String regWorker() {
 		
 		return "main/reg_worker";
 	}
 	
+	//사원 등록 
+	@PostMapping("/addWorker")
+	public String addWorker(DepartmentVO departmentVO, WorkerVO workerVO ) {
+		departmentService.addDepartment(workerVO);
+		departmentService.addDeptName(departmentVO);
+		
+		return "redirect:/emp/regWorker";
+	}
 }
 
 
