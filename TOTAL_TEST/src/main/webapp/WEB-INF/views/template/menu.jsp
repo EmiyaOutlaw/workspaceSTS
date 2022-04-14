@@ -14,9 +14,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-       <a class="navbar-brand" href="#">홈</a>
+       <a class="navbar-brand" href="/emp/goStartPage">홈</a>
        <a class="navbar-brand" href="/emp/manageDepartment">부서관리</a>
-       <a class="navbar-brand" href="#">사원 등록</a>
+       <a class="navbar-brand" href="/emp/regWorker">사원 등록</a>
        <a class="navbar-brand" href="#">사원 목록</a>
       </div>
     </div>

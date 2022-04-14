@@ -3,23 +3,42 @@
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="empMapper">
 	<resultMap type="com.kh.emp.vo.DepartmentVO" id="department">
-	<id column="DEPT_NUM" property="deptNum"/>
-	<result column="DEPT_NAME" property="deptName"/>
-	<result column="DEPT_LOCAL" property="deptLocal"/>
+	<id column="DEPT_NUM" 			property="deptNum"/>
+	<result column="DEPT_NAME" 	property="deptName"/>
+	<result column="DEPT_LOCAL" 	property="deptLocal"/>
 	</resultMap>
 	
-	<insert id="">
+	<!-- <resultMap type="" id="">
+		<id column="WORKER_NUM" 							property="workerNum"/>
+		<result column="WORKER_NAME" 				property="workerName"/>
+		<result column="WORKER_CLASS"	 				property="workerClass"/>
+		<result column="WORKER_AGE" 					property="workerAge"/>
+		<result column="WORKER_GENDER" 			property="workerGender"/>		
+		<result column="WORKER_PHONE_NUM" 	property="workerPhoneNum"/>		
+		<result column="DEPT_NUM" 							property="deptNum"/>		
+	</resultMap>  -->
+	
+	<!-- 부서 등록하기  -->
+	<insert id="addDepartment">
 		INSERT INTO TEST_DEPARTMENT (
 			DEPT_NUM
 			, DEPT_NAME
 			, DEPT_LOCAL
 		) VALUES (
-			#{deptNum}
+			(SELECT 'DEPT' || LPAD (NVL(MAX(TO_NUMBER(SUBSTR(DEPT_NUM, 5, 3))), 0) + 1, 3, 0) 
+			FROM TEST_DEPARTMENT)
 			, #{deptName}
 			, #{deptLocal}
-		
 		)
 	</insert>
+	
+	<select id="select_department_lists" resultMap="department">
+		SELECT DEPT_NUM
+			, DEPT_NAME
+			, DEPT_LOCAL
+		FROM TEST_DEPARTMENT
+		ORDER BY DEPT_NUM
+	</select>
 	
 	
 </mapper>
