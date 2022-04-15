@@ -16,5 +16,8 @@ public interface EmpService {
 	//사원 등록
 	void addWorker(WorkerVO workerVO);
 	
-	void addDeptName(DepartmentVO departmentVO);
+	//사원 목록 조회
+	List<DepartmentVO> selectWorkerlists(WorkerVO workerVO);
+	
+	
 }

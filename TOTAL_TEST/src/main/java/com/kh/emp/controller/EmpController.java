@@ -56,18 +56,27 @@ public class EmpController {
 	//사원 등록 페이지로 이동
 	@GetMapping("/regWorker")
 	public String regWorker(DepartmentVO departmentVO, Model model) {
-		model.addAttribute("deptInfo", departmentService.select_department_lists(departmentVO));
+		model.addAttribute("deptInfoLists", departmentService.select_department_lists(departmentVO));
 		return "main/reg_worker";
 	}
 	
-	//사원 등록 
+	//사원 등록 밑 alert 뛰우기
 	@PostMapping("/addWorker")
-	public String addWorker(DepartmentVO departmentVO, WorkerVO workerVO ) {
-		departmentService.addDepartment(workerVO);
-		departmentService.addDeptName(departmentVO);
+	public String addWorker(WorkerVO workerVO ) {
+		departmentService.addWorker(workerVO);
 		
-		return "redirect:/emp/regWorker";
+		return "reg_worker_rusult";
 	}
+	
+	
+	//사원 목록 페이지로 이동
+	@GetMapping("/workerList")
+	public String workerList(WorkerVO workerVO, Model model) {
+		
+		model.addAttribute("workerLists", departmentService.selectWorkerlists(workerVO));
+		return "main/worker_lists";
+	}
+	
 }
 
 

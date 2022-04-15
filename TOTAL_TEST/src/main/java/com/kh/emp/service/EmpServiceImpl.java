@@ -37,10 +37,13 @@ public class EmpServiceImpl implements EmpService{
 
 
 	@Override
-	public void addDeptName(DepartmentVO departmentVO) {
-
-		sqlSession.insert("empMapper.addDeptName", departmentVO);
+	public List<DepartmentVO> selectWorkerlists(WorkerVO workerVO) {
+		return sqlSession.selectList("empMapper.selectWorkerlists", workerVO);
 	}
+
+
+	
+
 
 
 	

@@ -1,6 +1,8 @@
 package com.kh.emp.vo;
 
-public class WorkerVO extends DepartmentVO {
+import java.util.List;
+
+public class WorkerVO extends DepartmentVO  {
 
 	public String workerNum;
 	public String workerName;
@@ -9,12 +11,18 @@ public class WorkerVO extends DepartmentVO {
 	public String workerGender;
 	public String workerPhoneNum;
 	public String deptNum;
-	
-	
+	public DepartmentVO deptList;
 	private String[] workerPhoneNums;
 	
 	
 	
+	
+	public DepartmentVO getDeptList() {
+		return deptList;
+	}
+	public void setDeptList(DepartmentVO deptList) {
+		this.deptList = deptList;
+	}
 	public String[] getWorkerPhoneNums() {
 		return workerPhoneNums;
 	}

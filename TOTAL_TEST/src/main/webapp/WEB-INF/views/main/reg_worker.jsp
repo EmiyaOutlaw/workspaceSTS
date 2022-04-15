@@ -29,25 +29,23 @@ textarea {
 <body>
 <div class="mainDiv">
 	<form action="/emp/addWorker" method="post">
-	<input type="hidden" name="${deptInfo.deptNum }">
-	<input type="hidden" name="${ deptInfo.deptLocal}">
 		<div class="workInfo" >
-			사원명 <input type="text" >
+			사원명 <input type="text"  name="workerName">
 		</div>
 		<div class="workInfo">
 		 직급 
 		 <select name="workerClass" required>
-			<option>부장</option>
-			<option>과장</option>
-			<option>차장</option>
-			<option>대리</option>
-			<option>사원</option>
-			<option>신입</option>
+			<option value="부장">부장</option>
+			<option value="과장">과장</option>
+			<option value="차장">차장</option>
+			<option value="대리">대리</option>
+			<option value="사원">사원</option>
+			<option value="신입">신입</option>
 		</select>
 		부서
-		<select name="deptName" required>
-			<c:forEach items="${deptInfo.deptName }" var="deptName">
-				<option>${deptName }</option>
+		<select name="deptNum" required>
+			<c:forEach items="${deptInfoLists }" var="dept">
+				<option value="${dept.deptNum }">${dept.deptName }</option>
 			</c:forEach>
 		</select>
 		</div>

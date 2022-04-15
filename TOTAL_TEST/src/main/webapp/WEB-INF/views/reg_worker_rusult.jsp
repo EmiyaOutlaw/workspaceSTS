@@ -8,8 +8,8 @@
 </head>
 <body>
 <script type="text/javascript">
-alert('등록성공');
-location.href='/emp/reg_worker';
+alert('일꾼 등록 성공')
+location.href="/emp/regWorker";
 </script>
 </body>
 </html>
